@@ -4,7 +4,7 @@ import SearchMenuComponent from "./SearchMenuComponent.jsx";
 import ConfMenuComponent from "./ConfMenuComponent.jsx";
 import UserMenuComponent from "./UserMenuComponent.jsx";
 
-const NavBarMainComponent = () => {
+const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
     
     return (
         <div className="h-full w-full flex items-center divide-x-2 divide-solid">
@@ -20,7 +20,9 @@ const NavBarMainComponent = () => {
             </div>
 
             {/* Main Sub Menu */}
-            <div className="h-full basis-4/12 flex items-center justify-center"><MainSubMenuComponent /></div>
+            <div className="h-full basis-4/12 flex items-center justify-center">
+                <MainSubMenuComponent setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
+            </div>
 
             {/* Search */}
             <div className="h-full basis-2/12 flex items-center"><SearchMenuComponent /></div>

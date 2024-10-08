@@ -1,11 +1,29 @@
+import MainArtistsComponent from "../../Components/Main/MainArtistsComponent.jsx";
+import MainAlbumsComponent from "../../Components/Main/MainAlbumsComponent.jsx";
+import MainMusicsComponent from "../../Components/Main/MainMusicsComponent.jsx";
+import { useOutletContext } from "react-router-dom";
+
 const Home = () => {
-    
+    const [activeComponent] = useOutletContext();
+
+    const renderComponent = () => {
+        switch (activeComponent) {
+            case 'artists':
+                return <MainArtistsComponent />;
+            case 'albums':
+                return <MainAlbumsComponent />;
+            case 'musics':
+                return <MainMusicsComponent />;
+            default:
+                return <MainArtistsComponent />;
+        }
+    };
+
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100">
-            <div className="text-3xl font-bold underline text-red-900">Home</div>
-            <div className="mt-4">Welcome to the homepage</div>
-            <div className="mt-4">This is another section</div>
+            <div>{renderComponent()}</div>
         </div>
-    )
-}
+    );
+};
+
 export default Home;
