@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import ButtonMenuBurger from "../Buttons/ButtonMenuBurger.jsx";
 import MainSubMenuComponent from "./MainSubMenuComponent.jsx";
 import SearchMenuComponent from "./SearchMenuComponent.jsx";
@@ -34,5 +35,10 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
             <div className="h-full basis-2/12 flex items-center"><UserMenuComponent /></div>
         </div>
     )
-}
+};
+
+NavBarMainComponent.propTypes = {
+    setActiveComponent: PropTypes.func.isRequired,
+    activeComponent: PropTypes.string.isRequired,
+};
 export default NavBarMainComponent;
