@@ -3,12 +3,14 @@ import _BaseLayout from "./_BaseLayout/index.jsx";
 import Home from "./Home/index.jsx";
 import NotFound from "./NotFound/index.jsx";
 import ProtectedRoutes from "./ProtectedRoutes/index.jsx";
+import MainArtistsComponent from "../Components/Main/MainArtistsComponent.jsx";
 const Router = () => {
     return(
         <BrowserRouter>
             <Routes>
                 <Route element={<_BaseLayout />}>
                     <Route path="/" element={<Home />} />
+                    <Route path="/artists" element={<MainArtistsComponent />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />

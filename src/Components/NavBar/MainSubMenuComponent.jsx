@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGuitar, faRecordVinyl, faMusic } from '@fortawesome/free-solid-svg-icons';
 
@@ -35,6 +36,11 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent }) => {
             
         </div>
     );
+};
+
+MainSubMenuComponent.propTypes = {
+    setActiveComponent: PropTypes.func.isRequired,
+    activeComponent: PropTypes.string.isRequired,
 };
 
 export default MainSubMenuComponent;
