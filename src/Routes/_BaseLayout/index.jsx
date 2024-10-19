@@ -14,12 +14,12 @@ const _BaseLayout = () => {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-grow">
+            <div className="flex-grow min-w-max min-h-80vh">
                 <Outlet context={[activeComponent]} />
             </div>
 
             {/* Footer */}
-            <div className="h-16 bg-gray-800">
+            <div className="flex flex-col justify-center items-center min-h-20vh bg-gray-800">
                 <Footer />
             </div>
         </div>

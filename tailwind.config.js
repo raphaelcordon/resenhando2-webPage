@@ -11,6 +11,11 @@ module.exports = {
         HoverLinksBgColor:'rgb(96 165 250)',
         HoverLinksTextColor: '#FFF',
       },
+      minHeight: {
+        '20vh': '20vh',
+        '80vh': '80vh',
+        '90vh': '90vh',
+      },
       width: {
         full: "100%",
       },

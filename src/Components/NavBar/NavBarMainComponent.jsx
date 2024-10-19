@@ -1,3 +1,5 @@
+import React, { useEffect, useRef } from "react";
+import logo from '../../assets/img/logo.png';
 import PropTypes from 'prop-types';
 import ButtonMenuBurger from "../Buttons/ButtonMenuBurger.jsx";
 import MainSubMenuComponent from "./MainSubMenuComponent.jsx";
@@ -6,7 +8,22 @@ import ConfMenuComponent from "./ConfMenuComponent.jsx";
 import UserMenuComponent from "./UserMenuComponent.jsx";
 
 const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
-    
+
+    const mainMenuRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (mainMenuRef.current && !mainMenuRef.current.contains(event.target)) {
+                setActiveComponent(null); // Deactivate MainSubMenuComponent
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [setActiveComponent]);
+
     return (
         <div className="h-full w-full flex items-center divide-x-2 divide-solid">
 
@@ -16,12 +33,12 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
                     <ButtonMenuBurger />
                 </span>
                 <span className="flex items-center">
-                    <p>Logo</p>
+                    <img src={logo} alt="Resenhando 2.0 Logo" className="max-h-14"/>
                 </span>
             </div>
 
             {/* Main Sub Menu */}
-            <div className="h-full basis-4/12 flex items-center justify-center">
+            <div className="h-full basis-4/12 flex items-center justify-center" ref={mainMenuRef}>
                 <MainSubMenuComponent setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
             </div>
 
@@ -34,11 +51,12 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
             {/* User Configurations */}
             <div className="h-full basis-2/12 flex items-center"><UserMenuComponent /></div>
         </div>
-    )
+    );
 };
 
 NavBarMainComponent.propTypes = {
     setActiveComponent: PropTypes.func.isRequired,
     activeComponent: PropTypes.string.isRequired,
 };
+
 export default NavBarMainComponent;
