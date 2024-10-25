@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGuitar, faRecordVinyl, faMusic } from '@fortawesome/free-solid-svg-icons';
 import {Link, NavLink} from "react-router-dom";
 
-const MainSubMenuComponent = ({ setActiveComponent, activeComponent }) => {
+const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) => {
     return (
         <div className="w-full h-full flex justify-around">
             
@@ -37,7 +37,7 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent }) => {
 
 MainSubMenuComponent.propTypes = {
     setActiveComponent: PropTypes.func.isRequired,
-    activeComponent: PropTypes.string.isRequired,
+    activeComponent: PropTypes.string,
 };
 
 export default MainSubMenuComponent;

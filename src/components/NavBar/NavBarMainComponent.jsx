@@ -7,8 +7,7 @@ import SearchMenuComponent from "./SearchMenuComponent.jsx";
 import ConfMenuComponent from "./ConfMenuComponent.jsx";
 import UserMenuComponent from "./UserMenuComponent.jsx";
 
-const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
-
+const NavBarMainComponent = ({ setActiveComponent, activeComponent = null }) => {
     const mainMenuRef = useRef(null);
 
     useEffect(() => {
@@ -26,7 +25,6 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
 
     return (
         <div className="h-full w-full flex items-center divide-x-2 divide-solid">
-
             {/* Button & Logo */}
             <div className="h-full basis-3/12 w-full flex items-center gap-5 bg-white">
                 <span className="h-full">
@@ -56,7 +54,6 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent }) => {
 
 NavBarMainComponent.propTypes = {
     setActiveComponent: PropTypes.func.isRequired,
-    activeComponent: PropTypes.string.isRequired,
+    activeComponent: PropTypes.string,
 };
-
 export default NavBarMainComponent;
