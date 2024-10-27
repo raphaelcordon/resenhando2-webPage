@@ -1,8 +1,7 @@
-import NavBar from "../../Components/NavBar/NavBarMainComponent";
-import Footer from "../../Components/Footer/FooterComponent";
+import NavBar from "../../components/NavBar/NavBarMainComponent";
+import Footer from "../../components/Footer/FooterComponent";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 
 const _BaseLayout = () => {
     const [activeComponent, setActiveComponent] = useState('artists');
