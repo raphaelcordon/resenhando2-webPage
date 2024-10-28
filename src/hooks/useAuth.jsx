@@ -13,8 +13,7 @@ const useAuth = () => {
             const authResponse = await AuthenticateUser(data);
             window.localStorage.setItem("token", authResponse.token);
             dispatch(loginUser(authResponse.token));
-            dispatch(storeUserData(authResponse.user));
-
+            dispatch(storeUserData(authResponse.userLoggedIn))
         } catch (error) {
             setError(error.message || "An error occurred during login.");
             throw error;
