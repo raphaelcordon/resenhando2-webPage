@@ -25,7 +25,7 @@ const MainArtistsComponent = () => {
                         .slice()
                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                         .map((item) => (
-                            <div key={item.id} className="w-72 border-gray-300 bg-amber-50 m-0">
+                            <div key={item.id} className="bg-green-400">
                                 <ReviewCardComponent review={item}/>
                             </div>
                         ))

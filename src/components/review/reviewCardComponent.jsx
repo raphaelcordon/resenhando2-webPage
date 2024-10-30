@@ -8,11 +8,11 @@ const ReviewCardComponent = ({ review }) => {
 
     
     return (
-        <div>
+        <div className="w-72 border-gray-300 bg-amber-400 m-0">
             <div className="w-full">
                 <img src={coverImage} alt={reviewTitle} className="w-full h-72 object-cover block"/>
             </div>
-            <article className="flex flex-col w-full p-4 bg-white pb-4">
+            <article className="flex flex-col w-full p-4 bg-white pb-3">
                 <div className="flex justify-between text-sm text-gray-600">
                     <span>{formattedDate}</span>
                     <span>Author: <b>{truncateText(userId, 10)}</b></span>
