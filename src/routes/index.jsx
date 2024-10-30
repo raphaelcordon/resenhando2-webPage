@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import _BaseLayout from "./_BaseLayout/index.jsx";
-import Home from "./Home/index.jsx";
-import Login from "./Login/index.jsx";
-import Register from "./Register/index.jsx";
-import NotFound from "./NotFound/index.jsx";
-import ProtectedRoutes from "./ProtectedRoutes/index.jsx";
-import MainArtistsComponent from "../Components/Main/MainArtistsComponent.jsx";
+import _BaseLayout from "./_baseLayout/index.jsx";
+import Home from "./home/index.jsx";
+import Login from "./login/index.jsx";
+import Register from "./register/index.jsx";
+import NotFound from "./notFound/index.jsx";
+import ProtectedRoutes from "./protectedRoutes/index.jsx";
+import MainArtistsComponent from "../components/Main/MainArtistsComponent.jsx";
 const Router = () => {
     return(
         <BrowserRouter>
