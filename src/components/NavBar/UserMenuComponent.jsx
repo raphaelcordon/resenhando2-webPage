@@ -9,8 +9,6 @@ const UserMenuComponent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.user.userData);
-    
-    console.log(user)
 
     const logoutHandler = () => {
         dispatch(logoutUser());

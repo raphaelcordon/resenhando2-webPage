@@ -23,7 +23,7 @@ export const Create = async (data) => {
     }
 }
 
-export const Get = async () => {
+export const GetReviews = async () => {
     try {
         const config = getAxiosConfig();
         const res = await axios.get("review/", config);
@@ -33,7 +33,7 @@ export const Get = async () => {
     }
 };
 
-export const GetById = async (id) => {
+export const GetReviewById = async (id) => {
     try {
         const config = getAxiosConfig();
         const res = await axios.get(`review/${id}/`, config);
@@ -43,7 +43,7 @@ export const GetById = async (id) => {
     }
 };
 
-export const Update = async (data) => {
+export const UpdateReview = async (data) => {
     const config = getAxiosConfig();
     try {
         const res = await axios.put(`review/`, data, config);
@@ -54,7 +54,7 @@ export const Update = async (data) => {
     }
 };
 
-export const Delete = async (id) => {
+export const DeleteReview = async (id) => {
     try {
         const config = getAxiosConfig();
         const res = await axios.delete(`review/${id}/`, config);

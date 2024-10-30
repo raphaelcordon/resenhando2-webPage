@@ -20,7 +20,7 @@ const Home = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center min-h-80vh bg-gray-100">
+        <div className="flex justify-center w-full min-h-80vh bg-gray-100">
             <div>{renderComponent()}</div>
         </div>
     );

@@ -16,7 +16,6 @@ export const userSlice = createSlice({
         },
         storeUserData: (state, action) => {
             state.userData = action.payload;
-            console.log(action.payload);
         },
     },
 });
