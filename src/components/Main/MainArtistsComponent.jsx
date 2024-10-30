@@ -17,16 +17,15 @@ const MainArtistsComponent = () => {
     }, [getReviewArtist, review]);
 
     return (
-        <div className="w-screen min-h-screen flex justify-center bg-red-500">
-            <div className="w-4/5 flex flex-wrap bg-blue-500 gap-4">
+        <div className="w-screen min-h-screen flex justify-center">
+            <div className="w-4/5 flex flex-wrap gap-5">
                 {error && <p>{error}</p>}
                 {review && review.totalCount > 0 ? (
                     review.items
                         .slice()
                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                         .map((item) => (
-                            <div key={item.id} className="bg-green-400">
-                                <ReviewCardComponent review={item}/>
+                            <div key={item.id}><ReviewCardComponent review={item}/>
                             </div>
                         ))
                 ) : (
