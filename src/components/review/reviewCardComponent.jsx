@@ -1,4 +1,3 @@
-import {useSelector} from "react-redux";
 
 const ReviewCardComponent = ({ review }) => {
     const { id, coverImage, reviewTitle, reviewBody, reviewType, spotify, userId, createdAt } = review;

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGuitar, faRecordVinyl, faMusic } from '@fortawesome/free-solid-svg-icons';
-import {Link, NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) => {
     return (

@@ -1,6 +1,6 @@
-import MainArtistsComponent from "../../Components/Main/MainArtistsComponent.jsx";
-import MainAlbumsComponent from "../../Components/Main/MainAlbumsComponent.jsx";
-import MainMusicsComponent from "../../Components/Main/MainMusicsComponent.jsx";
+import MainArtistsComponent from "../../components/Main/MainArtistsComponent.jsx";
+import MainAlbumsComponent from "../../components/Main/MainAlbumsComponent.jsx";
+import MainMusicsComponent from "../../components/Main/MainMusicsComponent.jsx";
 import { useOutletContext } from "react-router-dom";
 
 const Home = () => {

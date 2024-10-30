@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {Button} from "react-bootstrap";
-import {NavLink} from "react-router-dom";
 
 const Register = () => {
     const [firstName, setFirstName] = useState('');
