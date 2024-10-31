@@ -1,11 +1,10 @@
 
 const ReviewCardComponent = ({ review }) => {
-    const { id, coverImage, reviewTitle, reviewBody, reviewType, spotify, userId, createdAt } = review;
+    const { id, coverImage, reviewTitle, reviewBody, reviewType, spotifyId, createdAt, user } = review;
 
     const formattedDate = new Date(createdAt).toLocaleDateString('en-GB');
     const truncateText = (text, limit) =>
         text.length > limit ? `${text.substring(0, limit)}...` : text;
-
     
     return (
         <div className="w-72 border-gray-300 bg-amber-400 m-0">
@@ -15,7 +14,7 @@ const ReviewCardComponent = ({ review }) => {
             <article className="flex flex-col w-full p-4 bg-white pb-3">
                 <div className="flex justify-between text-sm text-gray-600">
                     <span>{formattedDate}</span>
-                    <span>Author: <b>{truncateText(userId, 10)}</b></span>
+                    <span>Author: <b>{truncateText(user.firstName + ' ' + user.lastName, 12)}</b></span>
                 </div>
                 <div className="flex flex-wrap font-extrabold text-lg">
                     {truncateText(reviewTitle, 25)}
