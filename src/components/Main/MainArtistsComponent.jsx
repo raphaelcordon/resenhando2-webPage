@@ -28,7 +28,7 @@ const MainArtistsComponent = () => {
         <div className="w-screen min-h-screen flex justify-center mb-10">
             <div className="w-4/5 flex flex-wrap gap-5">
                 {error && <p>{error}</p>}
-                {review?.totalCount >= 0 ? (
+                {review?.totalCount > 0 ? (
                     <>
                         {review.items
                             ?.slice()
