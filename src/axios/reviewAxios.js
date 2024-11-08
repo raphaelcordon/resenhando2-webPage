@@ -23,10 +23,13 @@ export const Create = async (data) => {
     }
 }
 
-export const GetReviews = async () => {
+export const GetReviews = async (reviewType, skip = 0, take = 10) => {
     try {
         const config = getAxiosConfig();
-        const res = await axios.get("review/", config);
+        const res = await axios.get(`/review`, {
+            params: { reviewType, skip, take },
+            ...config,
+        });
         return res.data;
     } catch (error) {
         throw new Error("Not possible to fetch data");
