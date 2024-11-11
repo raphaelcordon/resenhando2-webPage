@@ -1,6 +1,6 @@
 import MainArtistsComponent from "../../components/Main/MainArtistsComponent.jsx";
 import MainAlbumsComponent from "../../components/Main/MainAlbumsComponent.jsx";
-import MainMusicsComponent from "../../components/Main/MainMusicsComponent.jsx";
+import MainTracksComponent from "../../components/Main/MainTracksComponent.jsx";
 import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
@@ -12,8 +12,8 @@ const Home = () => {
                 return <MainArtistsComponent />;
             case 'albums':
                 return <MainAlbumsComponent />;
-            case 'musics':
-                return <MainMusicsComponent />;
+            case 'tracks':
+                return <MainTracksComponent />;
             default:
                 return <MainArtistsComponent />;
         }

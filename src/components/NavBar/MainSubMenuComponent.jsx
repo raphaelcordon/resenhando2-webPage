@@ -23,12 +23,12 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                   }`}><Link to="/"><FontAwesomeIcon icon={faRecordVinyl} /> Albums</Link>
             </span>
 
-            <span onClick={() => setActiveComponent('musics')}
+            <span onClick={() => setActiveComponent('tracks')}
                   className={`w-full h-full flex justify-center items-center gap-2 cursor-pointer ${
-                      activeComponent === 'musics'
+                      activeComponent === 'tracks'
                           ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
                           : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
-                  }`}><Link to="/"><FontAwesomeIcon icon={faMusic} /> Musics</Link>
+                  }`}><Link to="/"><FontAwesomeIcon icon={faMusic} /> Tracks</Link>
             </span>
 
         </div>

@@ -3,8 +3,8 @@ import useGetReview from "../../hooks/useGetReview.jsx";
 import {useEffect, useState} from "react";
 import ReviewCardComponent from "../review/reviewCardComponent.jsx";
 
-const MainMusicsComponent = () => {
-    const review = useSelector((state) => state.reviewMusic.reviewMusicData);
+const MainTracksComponent = () => {
+    const review = useSelector((state) => state.reviewTrack.reviewTrackData);
     const { getReview, error } = useGetReview();
     const [skip, setSkip] = useState(0);
     const [take] = useState(8);
@@ -12,7 +12,7 @@ const MainMusicsComponent = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             if (!review?.items || review.items.length === 0) {
-                await getReview("music", skip, take);
+                await getReview("track", skip, take);
             }
         };
         fetchReviews();
@@ -21,7 +21,7 @@ const MainMusicsComponent = () => {
     const loadMore = async () => {
         const newSkip = skip + take;
         setSkip(newSkip);
-        await getReview("music", newSkip, take);
+        await getReview("track", newSkip, take);
     };
 
     return (
@@ -57,4 +57,4 @@ const MainMusicsComponent = () => {
         </div>
     );
 };
-export default MainMusicsComponent;
+export default MainTracksComponent;

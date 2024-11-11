@@ -6,6 +6,8 @@ import Register from "./register/index.jsx";
 import NotFound from "./notFound/index.jsx";
 import ProtectedRoutes from "./protectedRoutes/index.jsx";
 import MainArtistsComponent from "../components/Main/MainArtistsComponent.jsx";
+import MainAlbumsComponent from "../components/Main/MainAlbumsComponent.jsx";
+import MainTracksComponent from "../components/Main/MainTracksComponent.jsx";
 const Router = () => {
     return(
         <BrowserRouter>
@@ -15,6 +17,8 @@ const Router = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/artists" element={<MainArtistsComponent />} />
+                    <Route path="/albums" element={<MainAlbumsComponent />} />
+                    <Route path="/tracks" element={<MainTracksComponent />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />

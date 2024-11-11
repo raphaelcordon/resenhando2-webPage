@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { GetReviews } from "../axios/reviewAxios.js";
 import { storeReviewArtistData } from "../store/slices/reviewArtistReducer.js";
 import {storeReviewAlbumData} from "../store/slices/reviewAlbumReducer.js";
-import {storeReviewMusicData} from "../store/slices/reviewMusicReducer.js";
+import {storeReviewTrackData} from "../store/slices/reviewTrackReducer.js";
 
 const useGetReview = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const useGetReview = () => {
                 break;
                 case "album": dispatch(storeReviewAlbumData(response));
                 break;
-                case "music": dispatch(storeReviewMusicData(response));
+                case "track": dispatch(storeReviewTrackData(response));
                 break;
             }
         } catch (error) {
