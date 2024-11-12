@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, loginUser } from "../../store/slices/userReducer.js"; // Import loginUser
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRightFromBracket, faGear, faArrowRightFromBracket, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket, faGear, faArrowRightToBracket, faBell } from "@fortawesome/free-solid-svg-icons";
 import useGetAuthenticatedUser from "../../hooks/useGetAuthenticatedUser.js";
 import { useCallback, useEffect } from "react";
 
@@ -45,15 +45,15 @@ const UserMenuComponent = () => {
     };
 
     return (
-        <div className="h-full w-full flex justify-around">
+        <div className="h-full w-full flex">
             {!token || !user ? (
                 <Link
                     to="/login"
-                    className="flex justify-around items-center w-full hover:font-bold hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor"
+                    className="flex items-center w-full hover:font-bold hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor"
                 >
-                    <div className="flex flex-col items-center">
-                        <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                        Login or Register
+                    <div className="flex flex-col items-center justify-end w-full">
+                        <FontAwesomeIcon icon={faArrowRightToBracket} />
+                        <span className="text-xs md:text-lg">Login or Register</span>
                     </div>
                 </Link>
             ) : (
@@ -65,7 +65,7 @@ const UserMenuComponent = () => {
 
                     <div className="flex flex-col items-center justify-center hover:bg-HoverLinksBgColor h-full px-4 cursor-pointer">
                         <FontAwesomeIcon icon={faGear} />
-                        {truncateText(user?.firstName + ' ' + user?.lastName, 15)}
+                        <span>{truncateText(user?.firstName + ' ' + user?.lastName, 15)}</span>
                     </div>
 
                     <div className="flex items-center h-full hover:bg-HoverLinksBgColor px-4 cursor-pointer">
