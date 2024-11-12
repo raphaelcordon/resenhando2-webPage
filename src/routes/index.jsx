@@ -8,6 +8,8 @@ import ProtectedRoutes from "./protectedRoutes/index.jsx";
 import MainArtistsComponent from "../components/Main/MainArtistsComponent.jsx";
 import MainAlbumsComponent from "../components/Main/MainAlbumsComponent.jsx";
 import MainTracksComponent from "../components/Main/MainTracksComponent.jsx";
+import Review from "./Review/index.jsx";
+import NewReview from "./NewReview/NewReview.jsx";
 const Router = () => {
     return(
         <BrowserRouter>
@@ -19,13 +21,13 @@ const Router = () => {
                     <Route path="/artists" element={<MainArtistsComponent />} />
                     <Route path="/albums" element={<MainAlbumsComponent />} />
                     <Route path="/tracks" element={<MainTracksComponent />} />
+                    <Route path="/review" element={<Review />} />
+                    <Route element={<ProtectedRoutes />}>
+                        <Route path="/newreview" element={<NewReview />} />
+                    </Route>
                 </Route>
 
                 <Route path="*" element={<NotFound />} />
-                
-                <Route element={<ProtectedRoutes />}>
-                    
-                </Route>
             </Routes>
         </BrowserRouter>
     )

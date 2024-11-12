@@ -11,7 +11,7 @@ const SearchMenuComponent = () => {
                         type="text" 
                         name="search" 
                         id="search" 
-                        placeholder="Search anything..."
+                        placeholder="Search is not implemented yet..."
                         className="w-full" />
                 </form>
             </span>

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth.jsx";
+import { toast, ToastContainer } from "react-toastify";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -10,6 +11,18 @@ const Login = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { authenticateUser, error } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const message = location.state?.message;
+    const from = location.state?.from || "/"; // Default to root if no redirect path
+
+    useEffect(() => {
+        if (message) {
+            toast.error(message, {
+                position: "top-center",
+                autoClose: 3000,
+            });
+        }
+    }, [message]);
 
     const getSubmitData = async (e) => {
         e.preventDefault();
@@ -18,7 +31,7 @@ const Login = () => {
         try {
             const data = { email, password };
             await authenticateUser(data);
-            navigate("/");
+            navigate(from); // Navigate to the previous page or root
         } catch (error) {
             setAuthError(error.message || "Failed to login. Please try again.");
         } finally {
@@ -28,6 +41,8 @@ const Login = () => {
 
     return (
         <div className="flex flex-col justify-start pt-6 items-center min-h-80vh bg-gray-100">
+            <ToastContainer />
+
             <div className="max-w-lg w-full p-6 bg-base-100 rounded-lg shadow-lg">
                 <h4 className="text-start text-sm mt-1 mb-4">
                     <span>Don't have an account yet? </span>

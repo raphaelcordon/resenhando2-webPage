@@ -3,7 +3,7 @@ import AxiosMotion from "./_base.js";
 const axios = AxiosMotion;
 
 const getAxiosConfig = () => {
-    const token = window.localStorage.getItem("token");
+    const token = window.localStorage.getItem("resenhando:authToken");
     const headers = {
         Authorization: `Bearer ${token}`,
     };

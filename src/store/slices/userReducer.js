@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit"
 export const userSlice = createSlice({
     name: "user",
     initialState: {
-        accessToken: window.localStorage.getItem('token') || null,
-        userData: [],
+        accessToken: window.localStorage.getItem("resenhando:authToken") || null,
+        userData: null,
     },
     reducers: {
         loginUser: (state, action) => {

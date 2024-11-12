@@ -11,7 +11,7 @@ const useAuth = () => {
         setError(null);
         try {
             const authResponse = await AuthenticateUser(data);
-            window.localStorage.setItem("token", authResponse.token);
+            window.localStorage.setItem("resenhando:authToken", authResponse.token);
             dispatch(loginUser(authResponse.token));
             dispatch(storeUserData(authResponse.userLoggedIn))
         } catch (error) {

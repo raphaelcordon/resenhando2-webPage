@@ -2,6 +2,7 @@ import MainArtistsComponent from "../../components/Main/MainArtistsComponent.jsx
 import MainAlbumsComponent from "../../components/Main/MainAlbumsComponent.jsx";
 import MainTracksComponent from "../../components/Main/MainTracksComponent.jsx";
 import { useOutletContext } from "react-router-dom";
+import NewReview from "../NewReview/NewReview.jsx";
 
 const Home = () => {
     const [activeComponent] = useOutletContext();
@@ -14,6 +15,8 @@ const Home = () => {
                 return <MainAlbumsComponent />;
             case 'tracks':
                 return <MainTracksComponent />;
+            case 'newReview':
+                return <NewReview />;
             default:
                 return <MainArtistsComponent />;
         }
