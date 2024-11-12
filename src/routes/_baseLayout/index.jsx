@@ -8,18 +8,18 @@ const _BaseLayout = () => {
 
     return (
         <div className="flex flex-col min-h-screen w-screen">
-            {/* Header */}
-            <div className="h-16 p-0 m-0 w-full">
+            {/* NAVBAR */}
+            <div className="w-full bg-white md:relative fixed bottom-0 z-50 md:order-1 order-3 h-16">
                 <NavBar setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-grow w-full min-h-80vh">
+            <div className="flex-grow w-full min-h-80vh order-2 pb-16 md:pb-0">
                 <Outlet context={[activeComponent]} />
             </div>
 
             {/* Footer */}
-            <div className="flex flex-col justify-center items-center min-h-20vh w-full bg-gray-800">
+            <div className="flex flex-col justify-center items-center min-h-20vh w-full bg-gray-800 order-3 md:order-3 pb-16 md:pb-0">
                 <Footer />
             </div>
         </div>

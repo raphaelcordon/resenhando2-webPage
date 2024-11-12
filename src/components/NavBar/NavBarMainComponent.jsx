@@ -23,7 +23,7 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent = null }) => 
     }, [setActiveComponent]);
 
     return (
-        <div className="h-full w-full flex items-center divide-x-2 divide-solid">
+        <div className="h-full w-full flex items-center divide-x-2 divide-solid md:top-0 md:bottom-auto">
             {/* Logo */}
             <div className="h-full basis-2/12 w-full flex items-center gap-5 bg-white">
                 <Link to="/">

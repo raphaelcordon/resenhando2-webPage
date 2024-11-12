@@ -1,60 +1,109 @@
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faRecordVinyl, faMusic, faPencil } from '@fortawesome/free-solid-svg-icons';
-import {Link} from "react-router-dom";
+import { faStar, faRecordVinyl, faMusic, faPencil, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) => {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+
     return (
         <div className="w-full h-full flex justify-around">
+            {/* Toggle Button for Mobile */}
+            <button
+                className="md:hidden flex items-center justify-between w-full bg-gray-100 px-4 py-2 border-b"
+                onClick={toggleDropdown}
+            >
+                <div>
+                    <FontAwesomeIcon icon={isDropdownOpen ? faTimes : faBars} className="text-gray-800" />
+                    <span className="text-xs text-gray-800">Menu</span>
+                </div>
+            </button>
 
-
-            <Link to="/artists" className={`w-full h-full flex justify-center items-center gap-2 cursor-pointer ${
-                activeComponent === 'artists'
-                    ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
-                    : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
-            }`}>
-                <span onClick={() => setActiveComponent('artists')}>
-                    <div className="flex flex-col items-center pl-15 hover:font-bold">
-                        <FontAwesomeIcon icon={faStar}/><span>Artists</span>
+            {/* Menu Items */}
+            <div
+                className={`${
+                    isDropdownOpen ? 'flex' : 'hidden'
+                } absolute bottom-16 left-0 w-full flex-col bg-white shadow-lg md:relative md:flex md:flex-row md:justify-around md:bottom-auto md:shadow-none`}
+            >
+                {/* Artists */}
+                <Link
+                    to="/artists"
+                    className={`w-full flex justify-center items-center gap-2 py-4 px-2 cursor-pointer ${
+                        activeComponent === 'artists'
+                            ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
+                            : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
+                    }`}
+                    onClick={() => {
+                        setActiveComponent('artists');
+                        setIsDropdownOpen(false);
+                    }}
+                >
+                    <div className="flex flex-col items-center">
+                        <FontAwesomeIcon icon={faStar} className="text-lg md:text-xl" />
+                        <span className="md:text-base ">Artists</span>
                     </div>
-                </span>
-            </Link>
+                </Link>
 
-            <Link to="/albums" className={`w-full h-full flex justify-center items-center gap-2 cursor-pointer ${
-                activeComponent === 'albums'
-                    ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
-                    : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
-            }`}>
-                <span onClick={() => setActiveComponent('albums')}>
-                    <div className="flex flex-col items-center pl-15 hover:font-bold">
-                        <FontAwesomeIcon icon={faRecordVinyl}/><span>Albums</span>
+                {/* Albums */}
+                <Link
+                    to="/albums"
+                    className={`w-full flex justify-center items-center gap-2 py-2 cursor-pointer ${
+                        activeComponent === 'albums'
+                            ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
+                            : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
+                    }`}
+                    onClick={() => {
+                        setActiveComponent('albums');
+                        setIsDropdownOpen(false);
+                    }}
+                >
+                    <div className="flex flex-col items-center">
+                        <FontAwesomeIcon icon={faRecordVinyl} className="text-lg md:text-xl" />
+                        <span className="text-sm md:text-base">Albums</span>
                     </div>
-                </span>
-            </Link>
+                </Link>
 
-            <Link to="/tracks" className={`w-full h-full flex justify-center items-center gap-2 cursor-pointer ${
-                activeComponent === 'tracks'
-                    ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
-                    : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
-            }`}>
-                <span onClick={() => setActiveComponent('tracks')}>
-                    <div className="flex flex-col items-center pl-15 hover:font-bold">
-                        <FontAwesomeIcon icon={faMusic}/><span>Tracks</span>
+                {/* Tracks */}
+                <Link
+                    to="/tracks"
+                    className={`w-full flex justify-center items-center gap-2 py-2 cursor-pointer ${
+                        activeComponent === 'tracks'
+                            ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
+                            : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
+                    }`}
+                    onClick={() => {
+                        setActiveComponent('tracks');
+                        setIsDropdownOpen(false);
+                    }}
+                >
+                    <div className="flex flex-col items-center">
+                        <FontAwesomeIcon icon={faMusic} className="text-lg md:text-xl" />
+                        <span className="text-sm md:text-base">Tracks</span>
                     </div>
-                </span>
-            </Link>
+                </Link>
 
-            <Link to="/newreview" className={`w-full h-full flex justify-center items-center gap-2 cursor-pointer ${
-                activeComponent === 'newReview'
-                    ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
-                    : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
-            }`}>
-                <span onClick={() => setActiveComponent('newReview')}>
-                    <div className="flex flex-col items-center pl-15 hover:font-bold">
-                        <FontAwesomeIcon icon={faPencil}/><span className="flex flex-nowrap">Write a review</span>
+                {/* Write a Review */}
+                <Link
+                    to="/newreview"
+                    className={`w-full flex justify-center items-center gap-2 py-2 cursor-pointer ${
+                        activeComponent === 'newReview'
+                            ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
+                            : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'
+                    }`}
+                    onClick={() => {
+                        setActiveComponent('newReview');
+                        setIsDropdownOpen(false);
+                    }}
+                >
+                    <div className="flex flex-col items-center justify-center">
+                        <FontAwesomeIcon icon={faPencil} className="text-lg md:text-xl" />
+                        <span className="text-sm md:text-base">Write a review</span>
                     </div>
-                </span>
-            </Link>
+                </Link>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html",
   ],
   theme: {
     extend: {
@@ -16,19 +17,11 @@ module.exports = {
         '80vh': '80vh',
         '90vh': '90vh',
       },
-      width: {
-        full: "100%",
-      },
-      margin: {
-        0: "0",
-      },
-      padding: {
-        0: "0",
-      },
     },
   },
-  plugins: [require('daisyui')],
-  daisyui: {
-    themes: ["corporate"],
-  },
+  // plugins: [require('daisyui')],
+  plugins: [],
+  // daisyui: {
+  //   themes: ["corporate"],
+  // },
 };
