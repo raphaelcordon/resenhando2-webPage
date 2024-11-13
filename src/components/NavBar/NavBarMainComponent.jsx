@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import Logo from '../../assets/img/logo.png';
-import LogoMobile from '../../assets/img/logoMobile.png';
 import PropTypes from 'prop-types';
 import MainSubMenuComponent from "./MainSubMenuComponent.jsx";
 import UserMenuComponent from "./UserMenuComponent.jsx";
