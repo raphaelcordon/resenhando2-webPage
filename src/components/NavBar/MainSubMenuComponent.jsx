@@ -6,13 +6,6 @@ import {useEffect} from 'react';
 
 const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) => {
 
-    const location = useLocation();
-    
-    useEffect(() => {
-        const path = location.pathname.split('/')[1];
-        setActiveComponent(path || 'artists');
-    }, [location, setActiveComponent]);
-
     return (
         <div className="w-full h-full flex justify-start">
 
@@ -29,7 +22,6 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                     }`}
                     onClick={() => {
                         setActiveComponent('artists');
-                        setIsDropdownOpen(false);
                     }}
                 >
                     <div className="flex flex-col items-center">
@@ -48,7 +40,6 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                     }`}
                     onClick={() => {
                         setActiveComponent('albums');
-                        setIsDropdownOpen(false);
                     }}
                 >
                     <div className="flex flex-col items-center">
@@ -67,7 +58,6 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                     }`}
                     onClick={() => {
                         setActiveComponent('tracks');
-                        setIsDropdownOpen(false);
                     }}
                 >
                     <div className="flex flex-col items-center">
@@ -86,7 +76,6 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                     }`}
                     onClick={() => {
                         setActiveComponent('newReview');
-                        setIsDropdownOpen(false);
                     }}
                 >
                     <div className="flex flex-col items-center justify-center">
