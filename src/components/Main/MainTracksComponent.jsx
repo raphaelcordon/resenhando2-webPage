@@ -26,7 +26,7 @@ const MainTracksComponent = () => {
 
     return (
         <div className="w-screen min-h-screen flex justify-center mb-10">
-            <div className="w-4/5 flex flex-wrap gap-5">
+            <div className="w-full lg:w-4/5 flex flex-wrap gap-3 lg:gap-5">
                 {error && <p>{error}</p>}
                 {review?.totalCount > 0 ? (
                     <>
@@ -35,12 +35,12 @@ const MainTracksComponent = () => {
                             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                             .map((item) => (
                                 <div key={item.id}>
-                                    <ReviewCardComponent review={item} />
+                                    <ReviewCardComponent review={item}/>
                                 </div>
                             ))}
                         {review.items.length < review.totalCount && (
                             <div className="w-full flex items-center justify-center m-4">
-                                <div className="flex items-center gap-4 w-full max-w-md">
+                                <div className="w-full flex items-center gap-4">
                                     <div className="flex-1 border-t border-gray-400"></div>
                                     <button onClick={loadMore} className="px-4 py-2 bg-gray-400 text-white rounded">
                                         Load More

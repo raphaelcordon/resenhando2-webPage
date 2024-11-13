@@ -45,30 +45,35 @@ const UserMenuComponent = () => {
     };
 
     return (
-        <div className="h-full w-full flex">
+        <div className="h-full w-full flex justify-end pr-2">
             {!token || !user ? (
                 <Link
                     to="/login"
-                    className="flex items-center w-full hover:font-bold hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor"
-                >
+                    className="flex items-center w-20 md:w-full hover:font-bold hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor">
                     <div className="flex flex-col items-center justify-end w-full">
-                        <FontAwesomeIcon icon={faArrowRightToBracket} />
-                        <span className="text-xs md:text-lg">Login or Register</span>
+                        <FontAwesomeIcon icon={faArrowRightToBracket} className="text-base md:text-lg" />
+                        <span className="hidden md:block md:text-lg">Login or Register</span>
+                        <span className="md:hidden text-xs">Login</span>
                     </div>
                 </Link>
             ) : (
                 // User authenticated
-                <div className="flex justify-around items-center w-full">
-                    <div className="flex flex-col items-center justify-center hover:bg-HoverLinksBgColor h-full px-4 cursor-pointer text-xl">
-                        <FontAwesomeIcon icon={faBell} />
+                <div className="w-full flex items-center justify-end gap-3 md:justify-around">
+                    {/* Notification Icon */}
+                    <div
+                        className="flex flex-col items-center justify-center hover:bg-HoverLinksBgColor h-full md:px-4 cursor-pointer text-xl">
+                        <FontAwesomeIcon icon={faBell} className="text-base md:text-lg"/>
+                        <span className="md:hidden text-xs">Notifications</span>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center hover:bg-HoverLinksBgColor h-full px-4 cursor-pointer">
-                        <FontAwesomeIcon icon={faGear} />
-                        <span>{truncateText(user?.firstName + ' ' + user?.lastName, 15)}</span>
+                    <div
+                        className="hidden md:flex flex-col items-center justify-center hover:bg-HoverLinksBgColor h-full px-4 cursor-pointer">
+                        <FontAwesomeIcon icon={faGear} className="text-base md:text-lg" />
+                        <span className="md:flex md:text-lg">{truncateText(user?.firstName + ' ' + user?.lastName, 15)}</span>
                     </div>
 
-                    <div className="flex items-center h-full hover:bg-HoverLinksBgColor px-4 cursor-pointer">
+                    {/* Logout Icon */}
+                    <div className="flex items-center h-full hover:bg-HoverLinksBgColor cursor-pointer">
                         <NavLink
                             to="/"
                             onClick={(e) => {
@@ -78,7 +83,7 @@ const UserMenuComponent = () => {
                         >
                             <div className="flex flex-col items-center justify-center h-full">
                                 <FontAwesomeIcon icon={faRightFromBracket} />
-                                <span>Logout</span>
+                                <span className="text-xs md:text-lg">Logout</span>
                             </div>
                         </NavLink>
                     </div>

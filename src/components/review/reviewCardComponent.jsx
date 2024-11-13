@@ -7,9 +7,9 @@ const ReviewCardComponent = ({ review }) => {
         text.length > limit ? `${text.substring(0, limit)}...` : text;
     
     return (
-        <div className="w-72 border-gray-300 bg-amber-400 m-0">
+        <div className="w-full lg:w-72 shadow m-0">
             <div className="w-full">
-                <img src={coverImage} alt={reviewTitle} className="w-full h-72 object-cover block"/>
+                <img src={coverImage} alt={reviewTitle} className="w-full lg:h-72 object-cover block"/>
             </div>
             <article className="flex flex-col w-full p-4 bg-white pb-3">
                 <div className="flex justify-between text-sm text-gray-600">
