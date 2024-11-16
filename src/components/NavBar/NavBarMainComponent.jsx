@@ -33,12 +33,12 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent = null }) => 
             </div>
 
             {/* Main Sub Menu */}
-            <div className="h-full w-4/6">
+            <div className="h-full w-full md:w-4/6">
                 <MainSubMenuComponent setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
             </div>
 
             {/* User Configurations */}
-            <div className="h-full w-2/6 md:w-1/6">
+            <div className="hidden md:flex h-full w-2/6 md:w-1/6">
                 <UserMenuComponent />
             </div>
         </div>

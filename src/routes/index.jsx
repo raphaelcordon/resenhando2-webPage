@@ -10,9 +10,11 @@ import MainAlbumsComponent from "../components/Main/MainAlbumsComponent.jsx";
 import MainTracksComponent from "../components/Main/MainTracksComponent.jsx";
 import Review from "./Review/index.jsx";
 import NewReview from "./NewReview/NewReview.jsx";
+import ScrollToTop from "../hooks/ScrollToTop.jsx";
 const Router = () => {
     return(
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route element={<_BaseLayout />}>
                     <Route path="/" element={<Home />} />

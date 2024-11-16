@@ -69,7 +69,7 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                 {/* Write a Review */}
                 <Link
                     to="/newreview"
-                    className={`hidden md:flex md:w-44 h-full justify-center items-center gap-2 py-2 cursor-pointer ${
+                    className={`w-full md:w-44 h-full flex justify-center items-center gap-2 py-2 cursor-pointer ${
                         activeComponent === 'newReview'
                             ? 'bg-SelectedMenuBgColor text-SelectedMenuTextColor'
                             : 'hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor'

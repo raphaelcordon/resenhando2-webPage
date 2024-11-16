@@ -49,7 +49,7 @@ const UserMenuComponent = () => {
             {!token || !user ? (
                 <Link
                     to="/login"
-                    className="flex items-center w-20 md:w-full hover:font-bold hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor">
+                    className="flex items-center justify-end md:w-full hover:font-bold hover:bg-HoverLinksBgColor hover:text-HoverLinksTextColor">
                     <div className="flex flex-col items-center justify-end w-full">
                         <FontAwesomeIcon icon={faArrowRightToBracket} className="text-base md:text-lg" />
                         <span className="hidden md:block md:text-lg">Login or Register</span>
