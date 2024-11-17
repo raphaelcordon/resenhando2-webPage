@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import MainSubMenuComponent from "./MainSubMenuComponent.jsx";
 import UserMenuComponent from "./UserMenuComponent.jsx";
 import { Link } from "react-router-dom";
+import SearchMenuComponent from "./SearchMenuComponent.jsx";
 
 const NavBarMainComponent = ({ setActiveComponent, activeComponent = null }) => {
     const mainMenuRef = useRef(null);
@@ -33,12 +34,17 @@ const NavBarMainComponent = ({ setActiveComponent, activeComponent = null }) => 
             </div>
 
             {/* Main Sub Menu */}
-            <div className="h-full w-full md:w-4/6">
+            <div className="h-full w-full md:w-2/6">
                 <MainSubMenuComponent setActiveComponent={setActiveComponent} activeComponent={activeComponent} />
             </div>
 
+            {/* Search */}
+            <div className="hidden md:flex h-full md:w-2/6 items-center justify-start px-2">
+                <SearchMenuComponent/>
+            </div>
+
             {/* User Configurations */}
-            <div className="hidden md:flex h-full w-2/6 md:w-1/6">
+            <div className="hidden md:flex h-full w-1/6 md:w-1/6">
                 <UserMenuComponent />
             </div>
         </div>

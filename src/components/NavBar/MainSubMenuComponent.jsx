@@ -26,7 +26,7 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                 >
                     <div className="flex flex-col items-center">
                         <FontAwesomeIcon icon={faStar} className="text-base md:text-lg" />
-                        <span className="text-xs md:text-lg">Artists</span>
+                        <span className="text-xs md:text-base lg:text-lg">Artists</span>
                     </div>
                 </Link>
 
@@ -44,7 +44,7 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                 >
                     <div className="flex flex-col items-center">
                         <FontAwesomeIcon icon={faRecordVinyl} className="text-base md:text-lg" />
-                        <span className="text-xs md:text-lg">Albums</span>
+                        <span className="text-xs md:text-base lg:text-lg">Albums</span>
                     </div>
                 </Link>
 
@@ -62,7 +62,7 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                 >
                     <div className="flex flex-col items-center">
                         <FontAwesomeIcon icon={faMusic}  className="text-base md:text-lg" />
-                        <span className="text-xs md:text-lg">Tracks</span>
+                        <span className="text-xs md:text-base lg:text-lg">Tracks</span>
                     </div>
                 </Link>
 
@@ -80,7 +80,7 @@ const MainSubMenuComponent = ({ setActiveComponent, activeComponent = null }) =>
                 >
                     <div className="flex flex-col items-center justify-center">
                         <FontAwesomeIcon icon={faPencil} className="text-base md:text-lg" />
-                        <span className="text-xs md:text-lg">Write a review</span>
+                        <span className="text-xs md:text-base lg:text-lg text-nowrap">Write a review</span>
                     </div>
                 </Link>
             </div>
