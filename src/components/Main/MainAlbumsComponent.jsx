@@ -2,6 +2,7 @@ import {useSelector} from "react-redux";
 import useGetReview from "../../hooks/useGetReview.jsx";
 import {useEffect, useState} from "react";
 import ReviewCardComponent from "../review/reviewCardComponent.jsx";
+import LoaderComponent from "../Common/LoaderComponent.jsx";
 
 const MainAlbumsComponent = () => {
     const review = useSelector((state) => state.reviewAlbum.reviewAlbumData);
@@ -25,7 +26,7 @@ const MainAlbumsComponent = () => {
     };
 
     return (
-        <div className="w-screen min-h-screen flex justify-center mb-10">
+        <div className="w-screen min-h-[60vh] flex justify-center mb-10">
             <div className="w-full lg:w-4/5 flex flex-wrap gap-3 lg:gap-5">
                 {error && <p>{error}</p>}
                 {review?.totalCount > 0 ? (
@@ -51,7 +52,7 @@ const MainAlbumsComponent = () => {
                         )}
                     </>
                 ) : (
-                    <p>Loading reviews...</p>
+                    <LoaderComponent />
                 )}
             </div>
         </div>

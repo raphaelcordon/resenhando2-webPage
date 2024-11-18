@@ -12,6 +12,9 @@ module.exports = {
         HoverLinksBgColor:'rgb(96 165 250)',
         HoverLinksTextColor: '#FFF',
       },
+      animation: {
+        spin: 'spin 1.5s linear infinite', // Adjust timing (e.g., 1s)
+      },
       minHeight: {
         '20vh': '20vh',
         '80vh': '80vh',
@@ -19,9 +22,5 @@ module.exports = {
       },
     },
   },
-  // plugins: [require('daisyui')],
   plugins: [],
-  // daisyui: {
-  //   themes: ["corporate"],
-  // },
 };

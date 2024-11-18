@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth.jsx";
 import { toast, ToastContainer } from "react-toastify";
+import ButtonSubmitDefault from "../../components/Buttons/ButtonSubmitDefault.jsx";
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -40,10 +40,10 @@ const Login = () => {
     };
 
     return (
-        <div className="flex flex-col justify-start pt-6 items-center min-h-80vh bg-gray-100">
+        <div className="flex flex-col justify-start pt-6 items-center min-h-[60vh]">
             <ToastContainer />
 
-            <div className="max-w-lg w-full p-6 bg-base-100 rounded-lg shadow-lg">
+            <div className="max-w-lg w-[95vw] p-6 bg-gray-300 rounded-lg shadow-lg">
                 <h4 className="text-start text-sm mt-1 mb-4">
                     <span>Don't have an account yet? </span>
                     <span className="navlink-style font-semibold">
@@ -89,11 +89,11 @@ const Login = () => {
                     </div>
                     <div className="text-center">
                         {authError && <p className="text-error text-sm mt-2">{authError}</p>}
-                        <Button
+                        <ButtonSubmitDefault
+                            buttonName={isLoading ? "Logging in..." : "Login"}
                             type="submit"
-                            disabled={isLoading || email === "" || password === ""}>
-                            {isLoading ? 'Logging in...' : 'Login'}
-                        </Button>
+                            disabled={isLoading || email === "" || password === ""}
+                        />
                     </div>
                 </form>
                 {error && <p className="text-error text-sm mt-2">{error}</p>}

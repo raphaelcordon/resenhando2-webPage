@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import {Button} from "react-bootstrap";
+import ButtonSubmitDefault from "../../components/Buttons/ButtonSubmitDefault.jsx";
+import {Create} from "../../axios/userAxios.js"
+import {useNavigate} from "react-router-dom";
 
 const Register = () => {
     const [firstName, setFirstName] = useState('');
@@ -7,28 +9,44 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [rePassword, setRePassword] = useState('');
+    
     const [error, setError] = useState('');
+    const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
-    const getSubmitData = async (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
-        // setError(null);
-        // setIsLoading(true);
-        // try {
-        //     await authenticateUser(email, password);
-        // } catch (error) {
-        //     setError(error.message || "Failed to login. Please try again.");
-        // } finally {
-        //     setIsLoading(false);
-        // }
+        setError('');
+
+        // Check if passwords match
+        if (password !== rePassword) {
+            setError('Passwords do not match.');
+            return;
+        }
+
+        const userData = { firstName, lastName ,email, password };
+
+        try {
+            setError('');
+            // Registration
+            await Create(userData);
+            navigate("/login");
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message) {
+                setError(error.response.data.message);
+            } else {
+                setError("This email is already registered");
+            }
+            console.log(error);
+        }
     };
 
     return (
-        <div className="flex flex-col justify-start pt-6 items-center min-h-80vh bg-gray-100">
-            <div className="max-w-lg w-full p-6 bg-base-100 rounded-lg shadow-lg">
+        <div className="flex flex-col justify-start pt-6 items-center min-h-[60vh]">
+            <div className="max-w-lg w-[95vw] p-6 bg-gray-300 rounded-lg shadow-lg">
 
-                <h2 className="font-semibold text-start mt-4 mb-4">Register to get access to write your own reviews</h2>
-                <form onSubmit={getSubmitData}>
+                <h2 className="font-semibold text-center mt-4 mb-4">Register and write your own reviews</h2>
+                <form onSubmit={handleSignUp}>
                     <div className="mb-4">
                         <label htmlFor="firstName" className="block mb-2 text-sm text-accent-content">
                             First Name
@@ -103,12 +121,14 @@ const Register = () => {
 
                     <div className="text-center">
                         {error?.password && <p>{error.password}</p>}
-                        <Button disabled={isLoading || email === ""
+                        <ButtonSubmitDefault
+                            buttonName={isLoading ? "Registering..." : "Register"}
+                            type="submit"
+                            disabled={isLoading || email === ""
                             || firstName === "" || lastName === ""
-                            || password === "" || rePassword === ""}>
-                            {isLoading ? 'Registering...' : 'Register'}
-                        </Button>
+                            || password === "" || rePassword === ""} />
                     </div>
+                    
                 </form>
                 <div className="text-center">
                     {error && <p className="text-error text-sm mt-2">{error}</p>}

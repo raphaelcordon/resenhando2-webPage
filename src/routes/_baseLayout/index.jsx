@@ -8,7 +8,7 @@ const _BaseLayout = () => {
     const [activeComponent, setActiveComponent] = useState('artists');
 
     return (
-        <div className="flex flex-col min-h-screen w-screen">
+        <div className="flex flex-col h-screen w-screen">
             
             {/*Mobile Top Navbar*/}
             <div className="w-full bg-white md:hidden order-1 h-12">
@@ -21,7 +21,7 @@ const _BaseLayout = () => {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-grow w-full min-h-80vh order-2 pb-16 md:pb-0">
+            <div className="flex-grow w-full h-60vh order-2 pb-16 md:pb-0">
                 <Outlet context={[activeComponent]}/>
             </div>
 
