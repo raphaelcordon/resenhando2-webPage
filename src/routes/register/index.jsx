@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ButtonSubmitDefault from "../../components/Buttons/ButtonSubmitDefault.jsx";
 import {Create} from "../../axios/userAxios.js"
 import {useNavigate} from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
 
 const Register = () => {
     const [firstName, setFirstName] = useState('');
@@ -11,16 +12,20 @@ const Register = () => {
     const [rePassword, setRePassword] = useState('');
     
     const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSignUp = async (e) => {
         e.preventDefault();
         setError('');
+        setSuccess('');
+        setIsLoading(true);
 
         // Check if passwords match
         if (password !== rePassword) {
             setError('Passwords do not match.');
+            setIsLoading(false);
             return;
         }
 
@@ -29,20 +34,37 @@ const Register = () => {
         try {
             setError('');
             // Registration
-            await Create(userData);
-            navigate("/login");
-        } catch (error) {
-            if (error.response && error.response.data && error.response.data.message) {
-                setError(error.response.data.message);
+            const res = await Create(userData);
+            if (res.succeeded === true) {
+                setSuccess("Registration successful!<br>Redirecting to login...");
+                setError('');
+                // Delay navigation to login page
+                setTimeout(() => {
+                    navigate("/login")
+                    setSuccess("")
+                }, 3000);
             } else {
                 setError("This email is already registered");
             }
-            console.log(error);
+            
+            
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message) {
+                setError(error.response.data.message);
+                console.log(error.response.data.message);
+            } else {
+                setError("This email is already registered");
+            }
+            setSuccess('');
+        }
+        finally {
+            setIsLoading(false);
         }
     };
 
     return (
         <div className="flex flex-col justify-start pt-6 items-center min-h-[60vh]">
+            <ToastContainer />
             <div className="max-w-lg w-[95vw] p-6 bg-gray-300 rounded-lg shadow-lg">
 
                 <h2 className="font-semibold text-center mt-4 mb-4">Register and write your own reviews</h2>
@@ -131,7 +153,13 @@ const Register = () => {
                     
                 </form>
                 <div className="text-center">
-                    {error && <p className="text-error text-sm mt-2">{error}</p>}
+                    {error && <p className="text-error text-sm text-red-800 mt-2">{error}</p>}
+                    {success && (
+                        <p
+                            className="textarea-success text-sm text-green-800 mt-2"
+                            dangerouslySetInnerHTML={{__html: success}}
+                        ></p>
+                    )}
                 </div>
             </div>
         </div>

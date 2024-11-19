@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import ButtonSubmitDefault from "../../components/Buttons/ButtonSubmitDefault.jsx";
 
-const Login = () => {
+const Login = ({ newRegisteredEmail = "" }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [authError, setAuthError] = useState('');
@@ -16,7 +16,7 @@ const Login = () => {
     const from = location.state?.from || "/"; // Default to root if no redirect path
 
     useEffect(() => {
-        if (message) {
+        if (message !== location.state?.newRegisteredEmail) {
             toast.error(message, {
                 position: "top-center",
                 autoClose: 3000,

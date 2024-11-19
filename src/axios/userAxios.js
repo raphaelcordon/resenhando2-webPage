@@ -16,7 +16,8 @@ const getAxiosConfig = () => {
 
 export const Create = async (data) => {
     try {
-        await axios.post("user", data);
+        const res = await axios.post("user", data);
+        return res.data;
     } catch (error) {
         console.log('Registration error response:', error.response);
         throw new Error("Fail, please try again");
