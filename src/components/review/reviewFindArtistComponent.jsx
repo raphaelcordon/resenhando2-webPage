@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { SearchArtistByName } from "../../axios/spotifyAxios.js";
 import LoaderComponent from "../Common/LoaderComponent.jsx";
 import ReviewCardFindArtistComponent from "./reviewCardFindArtistComponent.jsx";
+import ReviewArtistDetailed from "./reviewArtistDetailed.jsx";
 
 const ReviewFindArtistComponent = () => {
     const [search, setSearch] = useState("");
@@ -10,12 +11,14 @@ const ReviewFindArtistComponent = () => {
     const [searchResult, setSearchResult] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isResultNull, setIsResultNull] = useState(false);
+    const [selectedArtist, setSelectedArtist] = useState(null); // Track the selected artist
     const elementRef = useRef(null); // Reference for the element to scroll to
 
     const getSubmitData = async (limit, offset) => {
         setIsLoading(true);
         try {
             const res = await SearchArtistByName(search, limit, offset);
+            console.log(res)
             if (res?.length === 0) {
                 setIsResultNull(true);
             } else {
@@ -55,8 +58,17 @@ const ReviewFindArtistComponent = () => {
         }
     };
 
+    const handleCardClick = (artist) => {
+        setSelectedArtist(artist); // Set the selected artist
+        console.log(artist);
+    };
+
+    const closeDetailedView = () => {
+        setSelectedArtist(null); // Close the detailed view
+    };
+
     return (
-        <div className="w-full md:w-4/5 flex flex-col items-center">
+        <div className="w-full md:w-4/5 flex flex-col items-center relative">
             {/* Search Bar */}
             <div className="w-[95vw] md:w-full h-10 flex items-center bg-gray-300 rounded-2xl pl-3 md:m-5">
                 <span className="w-auto text-xs md:text-sm text-gray-500 text-nowrap">Search for an artist:</span>
@@ -82,34 +94,46 @@ const ReviewFindArtistComponent = () => {
                     <div className="text-gray-500 pl-2 md:pl-0 pt-4 md:pt-0 pb-4">
                         Results of your search:
                     </div>
-                    <div className="w-full flex flex-wrap justify-start md:gap-1 pl-2 md:pl-0">
+                    <div className="w-full flex flex-wrap justify-start md:justify-around md:gap-1 pl-2 md:pl-0">
                         {searchResult
                             .filter((item) => item.images.length > 0)
                             .map((item, index) => (
                                 <div
                                     key={item.id}
-                                    className="w-1/2 md:w-1/6"
+                                    className="w-1/2 md:w-1/6 cursor-pointer"
                                     ref={index === 5 ? elementRef : null} // Add ref to the 6th element
+                                    onClick={() => handleCardClick(item)} // Handle card click
                                 >
                                     <ReviewCardFindArtistComponent item={item} />
                                 </div>
                             ))}
                     </div>
                     {searchResult.length < 15 && (
-                        <div className="w-full flex items-center justify-center mt-4 mb-0 md:mb-6">
-                            <div className="w-full flex items-center gap-4 px-2">
-                                <div className="flex-1 border-t border-gray-400"></div>
-                                <button onClick={loadMore} className="px-4 py-2 bg-gray-400 text-white rounded">
-                                    Load More
-                                </button>
-                                <div className="flex-1 border-t border-gray-400"></div>
-                            </div>
-                            </div>
-                            )}
+                        <div className="w-full flex items-center justify-center m-4">
+                            <button onClick={loadMore} className="px-4 py-2 bg-gray-400 text-white rounded">
+                                Load More
+                            </button>
                         </div>
-                    ) : isResultNull ? (
+                    )}
+                </div>
+            ) : isResultNull ? (
                 <p className="text-center mt-4 text-gray-500">No results found.</p>
             ) : null}
+
+            {/* Overlay Component */}
+            {selectedArtist && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+                    onClick={closeDetailedView} // Close when clicking outside
+                >
+                    <div
+                        className="bg-white rounded-lg shadow-lg w-4/5 md:w-2/5 h-4/5 scroll-auto overflow-y-auto"
+                        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
+                    >
+                        <ReviewArtistDetailed item={selectedArtist} onClose={closeDetailedView} />
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

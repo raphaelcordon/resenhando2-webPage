@@ -1,6 +1,6 @@
 
 const ReviewCardFindArtistComponent = ({ item }) => {
-    const { id, name, uri, href, genres } = item;
+    const { name, genres } = item;
     const image = item.images?.[0];
     const imageUrl = image?.url;
     const truncateText = (text, limit) =>
@@ -16,7 +16,7 @@ const ReviewCardFindArtistComponent = ({ item }) => {
     
 
     return (
-        <div className="w-[90%] md:w-[95%] shadow mb-4 pb-4">
+        <div className="w-[90%] md:w-full cursor-pointer shadow-md mb-6 hover:opacity-60">
 
             {/* Image block */}
             <div className="w-42">
@@ -24,7 +24,7 @@ const ReviewCardFindArtistComponent = ({ item }) => {
             </div>
             
             {/* Text block */}
-            <article className="flex flex-col w-full h-16 md:h-24 p-4 bg-white pb-3 overflow-hidden">
+            <article className="flex flex-col w-full h-16 md:h-24 p-4 bg-gradient-to-b from-[#fafafa] to-[#f5faff] pb-3 overflow-hidden"> {/* [#edf5fd] */}
                 <div className="flex flex-col justify-between text-sm text-gray-600 overflow-hidden">
                     <div>
                         <span>Artist:</span> 
