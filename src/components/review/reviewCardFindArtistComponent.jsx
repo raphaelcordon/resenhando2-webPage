@@ -16,16 +16,16 @@ const ReviewCardFindArtistComponent = ({ item }) => {
     
 
     return (
-        <div className="w-[90%] md:w-[95%] shadow m-0 pb-4">
+        <div className="w-[90%] md:w-[95%] shadow mb-4 pb-4">
 
             {/* Image block */}
-            <div className="w-full">
-                <img src={imageUrl} alt={name} className="w-full h-40 lg:h-64 object-cover block"/>
+            <div className="w-42">
+                <img src={imageUrl} alt={name} className="w-full h-40 md:h-64 object-cover block"/>
             </div>
             
             {/* Text block */}
-            <article className="flex flex-col w-full h-16 md:h-24 p-4 bg-white pb-3">
-                <div className="flex flex-col justify-between text-sm text-gray-600">
+            <article className="flex flex-col w-full h-16 md:h-24 p-4 bg-white pb-3 overflow-hidden">
+                <div className="flex flex-col justify-between text-sm text-gray-600 overflow-hidden">
                     <div>
                         <span>Artist:</span> 
                         <span className="text-sm md:text-base font-bold pl-1">{truncateText(name, 20)}</span>
@@ -33,10 +33,11 @@ const ReviewCardFindArtistComponent = ({ item }) => {
                     <div className="hidden md:block">
                         <span>Genres: </span>
                         { genres.length > 0 ? (
-                            <span className="text-smal font-bold pl-1">{truncateText(ListGenres(genres), 55)}</span>
+                            <span className="w-full text-sm pl-1">
+                                {truncateText(ListGenres(genres), 100)}</span>
                             ) :
                             (
-                            <span className="text-smal text-gray-500 pl-1">Not defined</span>
+                            <span className="text-sm text-gray-500 pl-1">Not defined</span>
                             )
                         }
                     </div>

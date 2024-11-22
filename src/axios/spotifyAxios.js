@@ -23,10 +23,16 @@ export const GetArtistById = async (id) => {
     }
 };
 
-export const SearchArtistByName = async (name) => {
+export const SearchArtistByName = async (name, limit=5, offset=0) => {
     try {
         const config = getAxiosConfig();
-        const res = await axios.get(`spotify/artist/searchbyname/${name}/`, config);
+        const res = await axios.get(`spotify/artist/searchbyname/${name}/`, {
+            ...config,
+            params: {
+                limit: limit,
+                offset: offset,
+            },
+        });
         return res.data;
     } catch (error) {
         throw new Error("Not possible to fetch data");

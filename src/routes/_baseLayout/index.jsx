@@ -27,7 +27,7 @@ const _BaseLayout = () => {
 
             {/* Footer */}
             <div
-                className="flex flex-col justify-center items-center min-h-20vh w-full bg-gray-800 order-3 md:order-3 pb-16 md:pb-0">
+                className="flex flex-col justify-center items-center min-h-[24vh] md:min-h-[18vh] w-full bg-gray-800 order-3 md:order-3 pb-16 md:pb-0">
                 <Footer/>
             </div>
             
