@@ -1,5 +1,8 @@
-import ButtonReviewType from "../Buttons/ButtonReviewType.jsx";
 import ButtonCreateReview from "../Buttons/ButtonCreateReview.jsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
+import {Link, NavLink} from "react-router-dom";
+
 
 const ReviewArtistDetailed = ({ item }) => {
     const { id, name, uri, href, genres, popularity } = item;
@@ -9,7 +12,6 @@ const ReviewArtistDetailed = ({ item }) => {
     
     const externalUrl = item.externalUrls.spotify;
     const radio = `${externalUrl.substring(0, 25)}embed/${externalUrl.substring(25, externalUrl.length)}`;
-    console.log(radio)
     
     const truncateText = (text, limit) =>
         text.length > limit ? `${text.substring(0, limit)}...` : text;
@@ -21,15 +23,31 @@ const ReviewArtistDetailed = ({ item }) => {
         const preparedList = genres.map((genre) => `${TitleText(genre)}`)
         return preparedList.toString().replaceAll(',', ', ');
     }
-    
-    
 
+    const handleScroll = () => {
+        const target = document.getElementById("createArtistReview");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    };
+    
     return (
         <div className="h-full w-full flex flex-col justify-between">
 
-            {/* Artist */}
-            <div className="py-3 flex justify-center">
-                <span className="text-xl md:text-3xl font-bold pl-1">{truncateText(name, 45)}</span>
+            <div className="relative">
+                {/* Artist */}
+                <div className="py-3 flex justify-center">
+                    <span className="text-xl md:text-3xl font-bold pl-1">{truncateText(name, 45)}</span>
+                </div>
+
+                {/* Scroll down link for big screens */}
+                    <div className="hidden md:flex absolute bottom-0 right-1 z-10  flex-col items-center cursor-pointer hover:opacity-50"
+                    onClick={handleScroll}>
+                        <span className="text-xs pb-1 z-10 font-extralight text-blue-300">Scroll down</span>
+                        <div className="w-6 h-6 absolute -bottom-3 flex items-center justify-center bg-white border-2 border-blue-200 rounded-full shadow-lg shadow-gray-500">
+                            <FontAwesomeIcon icon={faCircleDown} className="text-base w-3 h-3 md:text-lg text-blue-200" />
+                        </div>
+                    </div>
             </div>
 
             {/* Image block */}
@@ -38,7 +56,7 @@ const ReviewArtistDetailed = ({ item }) => {
             </div>
 
             {/* Button Create Review */}
-            <div className="w-full mt-4 flex justify-center">
+            <div className="w-full mt-4 flex justify-center" id="createArtistReview">
                 <ButtonCreateReview buttonName={`Write a review about ${truncateText(name, 20)}`} />
             </div>
 

@@ -18,7 +18,6 @@ const ReviewFindArtistComponent = () => {
         setIsLoading(true);
         try {
             const res = await SearchArtistByName(search, limit, offset);
-            console.log(res)
             if (res?.length === 0) {
                 setIsResultNull(true);
             } else {
@@ -60,7 +59,6 @@ const ReviewFindArtistComponent = () => {
 
     const handleCardClick = (artist) => {
         setSelectedArtist(artist); // Set the selected artist
-        console.log(artist);
     };
 
     const closeDetailedView = () => {
