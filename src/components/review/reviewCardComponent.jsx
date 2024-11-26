@@ -7,7 +7,7 @@ const ReviewCardComponent = ({ review }) => {
         text.length > limit ? `${text.substring(0, limit)}...` : text;
     
     return (
-        <div className="w-full lg:w-72 shadow m-0">
+        <div className="w-full lg:w-72 shadow m-0 hover:opacity-60">
             <div className="w-full">
                 <img src={coverImage} alt={reviewTitle} className="w-full lg:h-72 object-cover block"/>
             </div>

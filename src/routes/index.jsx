@@ -23,7 +23,7 @@ const Router = () => {
                     <Route path="/artists" element={<MainArtistsComponent />} />
                     <Route path="/albums" element={<MainAlbumsComponent />} />
                     <Route path="/tracks" element={<MainTracksComponent />} />
-                    <Route path="/review" element={<Review />} />
+                    <Route path="/review/:id" element={<Review />} />
                     <Route element={<ProtectedRoutes />}>
                         <Route path="/newreview" element={<NewReview />} />
                     </Route>

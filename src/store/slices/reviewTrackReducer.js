@@ -12,11 +12,14 @@ const reviewTrackSlice = createSlice({
     initialState,
     reducers: {
         storeReviewTrackData: (state, action) => {
-            state.reviewTrackData.items = [
-                ...state.reviewTrackData.items,
-                ...action.payload.items,
-            ];
-            state.reviewTrackData.totalCount = action.payload.totalCount;
+            const newItems = action.payload.items.filter(
+                (newItem) =>
+                    !state.reviewTrackData.items.some(
+                        (existingItem) => existingItem.id === newItem.id
+                    )
+            );
+            state.reviewTrackData.items = [...newItems, ...state.reviewTrackData.items]; // Prepend new items
+            state.reviewTrackData.totalCount += newItems.length; // Adjust total count
         },
     },
 });

@@ -1,8 +1,9 @@
 import {useSelector} from "react-redux";
-import useGetReview from "../../hooks/useGetReview.jsx";
+import useGetReview from "../../hooks/useGetReviews.jsx";
 import {useEffect, useState} from "react";
 import ReviewCardComponent from "../review/reviewCardComponent.jsx";
 import LoaderComponent from "../Common/LoaderComponent.jsx";
+import {NavLink} from "react-router-dom";
 
 const MainAlbumsComponent = () => {
     const review = useSelector((state) => state.reviewAlbum.reviewAlbumData);
@@ -35,9 +36,11 @@ const MainAlbumsComponent = () => {
                             ?.slice()
                             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                             .map((item) => (
-                                <div key={item.id}>
-                                    <ReviewCardComponent review={item}/>
-                                </div>
+                                <NavLink to={`/review/${item.id}`}  key={item.id}>
+                                    <div className="">
+                                        <ReviewCardComponent review={item} />
+                                    </div>
+                                </NavLink>
                             ))}
                         {review.items.length < review.totalCount && (
                             <div className="w-full flex items-center justify-center m-4">

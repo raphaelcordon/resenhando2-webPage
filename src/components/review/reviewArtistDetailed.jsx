@@ -1,7 +1,8 @@
 import ButtonCreateReview from "../Buttons/ButtonCreateReview.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
-import {Link, NavLink} from "react-router-dom";
+import ReviewWriteArtist from "./ReviewWriteArtist.jsx";
+import {useState} from "react";
 
 
 const ReviewArtistDetailed = ({ item }) => {
@@ -12,7 +13,16 @@ const ReviewArtistDetailed = ({ item }) => {
     
     const externalUrl = item.externalUrls.spotify;
     const radio = `${externalUrl.substring(0, 25)}embed/${externalUrl.substring(25, externalUrl.length)}`;
-    
+
+    const [writingReview, setWritingReview] = useState(false);
+    const handleStartReview = () => {
+        setWritingReview(true);
+    };
+
+    if (writingReview) {
+        return <ReviewWriteArtist item={item} />;
+    }
+
     const truncateText = (text, limit) =>
         text.length > limit ? `${text.substring(0, limit)}...` : text;
 
@@ -57,7 +67,8 @@ const ReviewArtistDetailed = ({ item }) => {
 
             {/* Button Create Review */}
             <div className="w-full mt-4 flex justify-center" id="createArtistReview">
-                <ButtonCreateReview buttonName={`Write a review about ${truncateText(name, 20)}`} />
+                <ButtonCreateReview buttonName={`Write a review about ${truncateText(name, 20)}`}
+                                    onClick={handleStartReview}/>
             </div>
 
             {/* Text block */}

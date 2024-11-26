@@ -5,7 +5,7 @@ import { storeReviewArtistData } from "../store/slices/reviewArtistReducer.js";
 import {storeReviewAlbumData} from "../store/slices/reviewAlbumReducer.js";
 import {storeReviewTrackData} from "../store/slices/reviewTrackReducer.js";
 
-const useGetReview = () => {
+const useGetReviews = () => {
     const dispatch = useDispatch();
     const [error, setError] = useState(null);
 
@@ -13,6 +13,7 @@ const useGetReview = () => {
         setError(null);
         try {
             const response = await GetReviews(reviewType, skip, take);
+            
             switch (reviewType) {
                 case "artist": dispatch(storeReviewArtistData(response));
                 break;
@@ -29,4 +30,4 @@ const useGetReview = () => {
     return { getReview, error };
 };
 
-export default useGetReview;
+export default useGetReviews;

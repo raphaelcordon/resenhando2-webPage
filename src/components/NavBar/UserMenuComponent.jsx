@@ -43,7 +43,6 @@ const UserMenuComponent = () => {
         window.localStorage.removeItem("resenhando:authToken");
         navigate("/");
     };
-
     return (
         <div className="h-full w-full flex justify-end">
             {!token || !user ? (

@@ -12,11 +12,15 @@ const reviewArtistSlice = createSlice({
     initialState,
     reducers: {
         storeReviewArtistData: (state, action) => {
-            state.reviewArtistData.items = [
-                ...state.reviewArtistData.items,
-                ...action.payload.items,
-            ];
-            state.reviewArtistData.totalCount = action.payload.totalCount;
+            const newItems = action.payload.items.filter(
+                (newItem) =>
+                    !state.reviewArtistData.items.some(
+                        (existingItem) => existingItem.id === newItem.id
+                    )
+            );
+
+            state.reviewArtistData.items = [...newItems, ...state.reviewArtistData.items]; // Prepend new items
+            state.reviewArtistData.totalCount += newItems.length; // Adjust total count
         },
     },
 });
