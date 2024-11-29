@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket, faGear, faArrowRightToBracket, faBell } from "@fortawesome/free-solid-svg-icons";
 import useGetAuthenticatedUser from "../../hooks/useGetAuthenticatedUser.js";
 import { useCallback, useEffect } from "react";
+import useLogout from "../../hooks/useLogout.jsx";
 
 const UserMenuComponent = () => {
     const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const UserMenuComponent = () => {
     const token = useSelector((state) => state.user.accessToken);
     const user = useSelector((state) => state.user.userData);
     const { getUser, error } = useGetAuthenticatedUser();
+    const { logout } = useLogout();
 
     // Check localStorage and update Redux state
     useEffect(() => {
@@ -37,12 +39,7 @@ const UserMenuComponent = () => {
 
     const truncateText = (text, limit) =>
         text.length > limit ? `${text.substring(0, limit)}...` : text;
-
-    const logoutHandler = () => {
-        dispatch(logoutUser());
-        window.localStorage.removeItem("resenhando:authToken");
-        navigate("/");
-    };
+    
     return (
         <div className="h-full w-full flex justify-end">
             {!token || !user ? (
@@ -79,7 +76,7 @@ const UserMenuComponent = () => {
                             to="/"
                             onClick={(e) => {
                                 e.preventDefault();
-                                logoutHandler();
+                                logout();
                             }}
                         >
                             <div className="flex flex-col items-center justify-center h-full">

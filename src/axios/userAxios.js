@@ -49,8 +49,8 @@ export const GetFromClaim = async () => {
         const config = getAxiosConfig();
         const res = await axios.get(`user/fromclaim`, config);
         return res.data;
-    } catch (error) {
-        throw new Error("Not possible to fetch data");
+    } catch (res) {
+        throw new Error(res.status);
     }
 };
 

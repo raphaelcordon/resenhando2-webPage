@@ -1,7 +1,7 @@
-import {useDispatch} from "react-redux";
-import {useCallback, useState} from "react";
-import {storeUserData} from "../store/slices/userReducer.js";
-import {GetFromClaim,} from "../axios/userAxios.js";
+import { useDispatch } from "react-redux";
+import { useCallback, useState } from "react";
+import { storeUserData, logoutUser } from "../store/slices/userReducer.js";
+import { GetFromClaim } from "../axios/userAxios.js";
 
 const useGetAuthenticatedUser = () => {
     const dispatch = useDispatch();
@@ -11,10 +11,12 @@ const useGetAuthenticatedUser = () => {
         setError(null);
         try {
             const res = await GetFromClaim();
-            dispatch(storeUserData(res));
+            dispatch(storeUserData(res.data)); // Store user data if successful
         } catch (error) {
-            setError(error.message || "An error occurred retrieving user.");
-            throw error;
+            setError(error);
+            window.localStorage.removeItem("resenhando:authToken");
+            dispatch(logoutUser()); // Clear Redux state
+            console.error("Error fetching user data:", error);
         }
     }, [dispatch]);
 
