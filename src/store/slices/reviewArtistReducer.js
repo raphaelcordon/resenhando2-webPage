@@ -20,7 +20,7 @@ const reviewArtistSlice = createSlice({
             );
 
             state.reviewArtistData.items = [...newItems, ...state.reviewArtistData.items]; // Prepend new items
-            state.reviewArtistData.totalCount += newItems.length; // Adjust total count
+            state.reviewArtistData.totalCount = action.payload.totalCount;
         },
     },
 });

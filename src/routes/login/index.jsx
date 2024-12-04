@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth.jsx";
 import { toast, ToastContainer } from "react-toastify";
-import ButtonSubmitDefault from "../../components/Buttons/ButtonSubmitDefault.jsx";
+import ButtonSubmitDefault from "../../components/buttons/buttonSubmitDefault.jsx";
 
 const Login = ({ newRegisteredEmail = "" }) => {
     const [email, setEmail] = useState('');

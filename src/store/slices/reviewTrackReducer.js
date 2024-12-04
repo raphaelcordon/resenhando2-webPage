@@ -19,7 +19,7 @@ const reviewTrackSlice = createSlice({
                     )
             );
             state.reviewTrackData.items = [...newItems, ...state.reviewTrackData.items]; // Prepend new items
-            state.reviewTrackData.totalCount += newItems.length; // Adjust total count
+            state.reviewTrackData.totalCount = action.payload.totalCount;
         },
     },
 });

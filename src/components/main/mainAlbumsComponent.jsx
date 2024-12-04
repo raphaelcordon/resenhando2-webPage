@@ -1,12 +1,12 @@
 import {useSelector} from "react-redux";
 import useGetReview from "../../hooks/useGetReviews.jsx";
 import {useEffect, useState} from "react";
-import ReviewCardComponent from "../review/reviewCardComponent.jsx";
-import LoaderComponent from "../Common/LoaderComponent.jsx";
+import ReviewCardComponent from "../review/cardComponents/reviewCardComponent.jsx";
+import LoaderComponent from "../common/loaderComponent.jsx";
 import {NavLink} from "react-router-dom";
 
-const MainTracksComponent = () => {
-    const review = useSelector((state) => state.reviewTrack.reviewTrackData);
+const MainAlbumsComponent = () => {
+    const review = useSelector((state) => state.reviewAlbum.reviewAlbumData);
     const { getReview, error } = useGetReview();
     const [skip, setSkip] = useState(0);
     const [take] = useState(8);
@@ -14,7 +14,7 @@ const MainTracksComponent = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             if (!review?.items || review.items.length === 0) {
-                await getReview("track", skip, take);
+                await getReview("album", skip, take);
             }
         };
         fetchReviews();
@@ -23,7 +23,7 @@ const MainTracksComponent = () => {
     const loadMore = async () => {
         const newSkip = skip + take;
         setSkip(newSkip);
-        await getReview("track", newSkip, take);
+        await getReview("album", newSkip, take);
     };
 
     return (
@@ -37,7 +37,7 @@ const MainTracksComponent = () => {
                             .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                             .map((item) => (
                                 <NavLink to={`/review/${item.id}`}  key={item.id}>
-                                    <div>
+                                    <div className="">
                                         <ReviewCardComponent review={item} />
                                     </div>
                                 </NavLink>
@@ -61,4 +61,4 @@ const MainTracksComponent = () => {
         </div>
     );
 };
-export default MainTracksComponent;
+export default MainAlbumsComponent;

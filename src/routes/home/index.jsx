@@ -1,8 +1,8 @@
-import MainArtistsComponent from "../../components/Main/MainArtistsComponent.jsx";
-import MainAlbumsComponent from "../../components/Main/MainAlbumsComponent.jsx";
-import MainTracksComponent from "../../components/Main/MainTracksComponent.jsx";
+import MainArtistsComponent from "../../components/main/mainArtistsComponent.jsx";
+import MainAlbumsComponent from "../../components/main/mainAlbumsComponent.jsx";
+import MainTracksComponent from "../../components/main/mainTracksComponent.jsx";
 import { useOutletContext } from "react-router-dom";
-import NewReview from "../NewReview/NewReview.jsx";
+import NewReview from "../newReview/index.jsx";
 
 const Home = () => {
     const [activeComponent] = useOutletContext();

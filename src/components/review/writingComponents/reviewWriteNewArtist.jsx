@@ -1,8 +1,8 @@
 import {useLocation, useNavigate} from "react-router-dom";
-import ButtonSubmitDefault from "../Buttons/ButtonSubmitDefault.jsx";
+import ButtonSubmitDefault from "../../buttons/buttonSubmitDefault.jsx";
 import {useState} from "react";
 import {useSelector} from "react-redux";
-import useCreateReview from "../../hooks/useCreateReview.jsx";
+import useCreateReview from "../../../hooks/useCreateReview.jsx";
 
 const ReviewWriteArtist = ({ item }) => {
     const [reviewTitle, setReviewTitle] = useState('');

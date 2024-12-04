@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import Logo from '../../assets/img/logo.png';
 import PropTypes from 'prop-types';
-import MainSubMenuComponent from "./MainSubMenuComponent.jsx";
-import UserMenuComponent from "./UserMenuComponent.jsx";
+import MainSubMenuComponent from "./mainSubMenuComponent.jsx";
+import UserMenuComponent from "./userMenuComponent.jsx";
+import SearchMenuComponent from "./searchMenuComponent.jsx";
 import { Link } from "react-router-dom";
-import SearchMenuComponent from "./SearchMenuComponent.jsx";
 
 const NavBarMainComponent = ({ setActiveComponent, activeComponent = null }) => {
     const mainMenuRef = useRef(null);

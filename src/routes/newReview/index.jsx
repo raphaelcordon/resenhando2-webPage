@@ -1,8 +1,8 @@
 import {ToastContainer} from "react-toastify";
-import ButtonReviewType from "../../components/Buttons/ButtonReviewType.jsx";
-import ReviewFindArtistComponent from "../../components/review/reviewFindArtistComponent.jsx";
-import ReviewFindAlbumComponent from "../../components/review/reviewFindAlbumComponent.jsx";
-import ReviewFindTrackComponent from "../../components/review/reviewFindTrackComponent.jsx";
+import ButtonReviewType from "../../components/buttons/buttonReviewType.jsx";
+import ReviewFindArtistComponent from "../../components/review/findingComponents/reviewFindArtistComponent.jsx";
+import ReviewFindAlbumComponent from "../../components/review/findingComponents/reviewFindAlbumComponent.jsx";
+import ReviewFindTrackComponent from "../../components/review/findingComponents/reviewFindTrackComponent.jsx";
 import {useState} from "react";
 
 const NewReview = () => {

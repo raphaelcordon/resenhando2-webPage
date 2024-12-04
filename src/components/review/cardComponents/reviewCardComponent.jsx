@@ -1,10 +1,10 @@
+import truncateText from "../../../hooks/common/truncateText.js";
 
+//  This component is shown at main components for ARTISTS, ALBUMS and TRACKS
 const ReviewCardComponent = ({ review }) => {
     const { id, coverImage, reviewTitle, reviewBody, reviewType, spotifyId, createdAt, user } = review;
 
     const formattedDate = new Date(createdAt).toLocaleDateString('en-GB');
-    const truncateText = (text, limit) =>
-        text.length > limit ? `${text.substring(0, limit)}...` : text;
     
     return (
         <div className="w-full lg:w-72 shadow m-0 hover:opacity-60">

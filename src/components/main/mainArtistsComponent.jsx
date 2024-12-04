@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import ReviewCardComponent from "../review/reviewCardComponent.jsx";
+import ReviewCardComponent from "../review/cardComponents/reviewCardComponent.jsx";
 import { useSelector } from "react-redux";
 import useGetReview from "../../hooks/useGetReviews.jsx";
-import LoaderComponent from "../Common/LoaderComponent.jsx";
-import {NavLink} from "react-router-dom";
+import LoaderComponent from "../common/loaderComponent.jsx";
+import { NavLink } from "react-router-dom";
 
 const MainArtistsComponent = () => {
     const review = useSelector((state) => state.reviewArtist.reviewArtistData);

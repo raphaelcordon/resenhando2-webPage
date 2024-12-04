@@ -1,8 +1,8 @@
-import NavBar from "../../components/NavBar/NavBarMainComponent";
-import Footer from "../../components/Footer/FooterComponent";
+import NavBar from "../../components/navBar/navBarMainComponent";
+import Footer from "../../components/footer/footerComponent";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import MobileTopNavBar from "../../components/NavBar/MobileTopNavBar.jsx";
+import MobileTopNavBar from "../../components/navBar/mobileTopNavBar.jsx";
 
 const _BaseLayout = () => {
     const [activeComponent, setActiveComponent] = useState('artists');

@@ -1,7 +1,7 @@
 import LogoFooter from '../../assets/img/logoFooter.png';
-import UserMenuComponent from "./UserMenuComponent.jsx";
+import UserMenuComponent from "./userMenuComponent.jsx";
+import SearchMenuComponent from "./searchMenuComponent.jsx";
 import { Link } from "react-router-dom";
-import SearchMenuComponent from "./SearchMenuComponent.jsx";
 
 const MobileTopNavBar = () => {
     

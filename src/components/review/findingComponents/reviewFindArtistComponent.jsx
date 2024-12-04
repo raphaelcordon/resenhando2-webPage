@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
-import { SearchArtistByName } from "../../axios/spotifyAxios.js";
-import LoaderComponent from "../Common/LoaderComponent.jsx";
-import ReviewCardFindArtistComponent from "./reviewCardFindArtistComponent.jsx";
-import ReviewArtistDetailed from "./reviewArtistDetailed.jsx";
+import { SearchArtistByName } from "../../../axios/spotifyAxios.js";
+import LoaderComponent from "../../common/loaderComponent.jsx";
+import ReviewCardFindArtistComponent from "./../cardComponents/reviewCardFindArtistComponent.jsx";
+import ReviewArtistDetailed from "./../detailingComponents/reviewArtistDetailed.jsx";
 
+// This component Search for ARTISTS in the Backend and render them back in multiple "reviewCardFindArtistComponent.jsx"
 const ReviewFindArtistComponent = () => {
     const [search, setSearch] = useState("");
     const [searchLimit, setSearchLimit] = useState(5);

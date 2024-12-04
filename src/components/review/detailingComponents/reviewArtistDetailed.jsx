@@ -1,10 +1,12 @@
-import ButtonCreateReview from "../Buttons/ButtonCreateReview.jsx";
+import ButtonCreateReview from "../../buttons/buttonCreateReview.jsx";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
-import ReviewWriteArtist from "./ReviewWriteArtist.jsx";
+import ReviewWriteArtist from "./../writingComponents/reviewWriteNewArtist.jsx";
 import {useState} from "react";
+import truncateText from "../../../hooks/common/truncateText.js";
+import titleText from "../../../hooks/common/titleText.js";
 
-
+// The component details an ARTIST before the user decides to write a review about it
 const ReviewArtistDetailed = ({ item }) => {
     const { id, name, uri, href, genres, popularity } = item;
     const image = item.images?.[0];
@@ -23,14 +25,8 @@ const ReviewArtistDetailed = ({ item }) => {
         return <ReviewWriteArtist item={item} />;
     }
 
-    const truncateText = (text, limit) =>
-        text.length > limit ? `${text.substring(0, limit)}...` : text;
-
-    const TitleText = (text) =>
-        `${text.substring(0, 1).toUpperCase() + text.substring(1, text.length).toLowerCase()}`
-
     const ListGenres = (genres) => {
-        const preparedList = genres.map((genre) => `${TitleText(genre)}`)
+        const preparedList = genres.map((genre) => `${titleText(genre)}`)
         return preparedList.toString().replaceAll(',', ', ');
     }
 
@@ -88,30 +84,12 @@ const ReviewArtistDetailed = ({ item }) => {
                             )
                         }
                     </div>
-
-                    {/* Followers */}
-                    <div className="pb-4">
-                        <span className="font-bold">Spotify followers:</span>
-                        <span className="text-sm md:text-base font-bold pl-1">{followers}</span>
-                    </div>
-
-                    {/* Popularity */}
-                    <div className="flex items-center">
-                        <span className="font-bold mr-2">Popularity:</span>
-                        <div className="flex-1 bg-gray-300 rounded-lg h-4 relative">
-                            <div
-                                className="bg-green-500 h-4 rounded-lg"
-                                style={{width: `${popularity}%`}}
-                            ></div>
-                        </div>
-                        <span className="text-sm md:text-base font-bold pl-2">{popularity}%</span>
-                    </div>
                 </div>
             </article>
             
             {/* Embedded Radio */}
             <div className="w-full flex justify-center items-center">
-                <iframe src={radio} width="1024" height="600" allowTransparency="false" allow="encrypted-media"></iframe>
+                <iframe src={radio} width="1024" height="600" allow="encrypted-media"></iframe>
             </div>
 
         </div>

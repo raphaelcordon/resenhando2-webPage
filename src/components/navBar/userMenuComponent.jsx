@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, loginUser } from "../../store/slices/userReducer.js"; // Import loginUser
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket, faGear, faArrowRightToBracket, faBell } from "@fortawesome/free-solid-svg-icons";
-import useGetAuthenticatedUser from "../../hooks/useGetAuthenticatedUser.js";
+import useGetAuthenticatedUser from "../../hooks/useGetAuthenticatedUser.jsx";
 import { useCallback, useEffect } from "react";
 import useLogout from "../../hooks/useLogout.jsx";
+import truncateText from "../../hooks/common/truncateText.js";
 
 const UserMenuComponent = () => {
     const dispatch = useDispatch();
@@ -36,9 +37,6 @@ const UserMenuComponent = () => {
     useEffect(() => {
         fetchUser();
     }, [fetchUser]);
-
-    const truncateText = (text, limit) =>
-        text.length > limit ? `${text.substring(0, limit)}...` : text;
     
     return (
         <div className="h-full w-full flex justify-end">

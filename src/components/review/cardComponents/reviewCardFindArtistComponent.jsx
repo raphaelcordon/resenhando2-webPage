@@ -1,20 +1,17 @@
+import truncateText from "../../../hooks/common/truncateText.js";
+import titleText from "../../../hooks/common/titleText.js";
 
+// This component is used to list ARTISTS as a result from search to Write a new Review
 const ReviewCardFindArtistComponent = ({ item }) => {
     const { name, genres } = item;
     const image = item.images?.[0];
     const imageUrl = image?.url;
-    const truncateText = (text, limit) =>
-        text.length > limit ? `${text.substring(0, limit)}...` : text;
-
-    const TitleText = (text) =>
-        `${text.substring(0, 1).toUpperCase() + text.substring(1, text.length).toLowerCase()}`
     
     const ListGenres = (genres) => {
-        const preparedList = genres.map((genre) => `${TitleText(genre)}` )
+        const preparedList = genres.map((genre) => `${titleText(genre)}` )
         return preparedList.toString().replaceAll(',', ', ');
     }
     
-
     return (
         <div className="w-[90%] md:w-full cursor-pointer shadow-md mb-6 hover:opacity-60">
 

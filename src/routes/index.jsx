@@ -5,12 +5,12 @@ import Login from "./login/index.jsx";
 import Register from "./register/index.jsx";
 import NotFound from "./notFound/index.jsx";
 import ProtectedRoutes from "./protectedRoutes/index.jsx";
-import MainArtistsComponent from "../components/Main/MainArtistsComponent.jsx";
-import MainAlbumsComponent from "../components/Main/MainAlbumsComponent.jsx";
-import MainTracksComponent from "../components/Main/MainTracksComponent.jsx";
-import Review from "./Review/index.jsx";
-import NewReview from "./NewReview/NewReview.jsx";
-import ScrollToTop from "../hooks/ScrollToTop.jsx";
+import MainArtistsComponent from "../components/main/mainArtistsComponent.jsx";
+import MainAlbumsComponent from "../components/main/mainAlbumsComponent.jsx";
+import MainTracksComponent from "../components/main/mainTracksComponent.jsx";
+import Review from "./review/index.jsx";
+import NewReview from "./newReview/index.jsx";
+import ScrollToTop from "../hooks/common/scrollToTop.js";
 const Router = () => {
     return(
         <BrowserRouter>
@@ -23,6 +23,7 @@ const Router = () => {
                     <Route path="/artists" element={<MainArtistsComponent />} />
                     <Route path="/albums" element={<MainAlbumsComponent />} />
                     <Route path="/tracks" element={<MainTracksComponent />} />
+                    <Route path="/review/" element={<Home />} />
                     <Route path="/review/:id" element={<Review />} />
                     <Route element={<ProtectedRoutes />}>
                         <Route path="/newreview" element={<NewReview />} />
