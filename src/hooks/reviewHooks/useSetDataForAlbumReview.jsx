@@ -1,14 +1,15 @@
 import { useCallback } from "react";
-import useGetArtistById from "../useGetArtistById.jsx";
+import useGetAlbumById from "../useGetAlbumById.jsx";
 import truncateText from "../common/truncateText.js";
 import titleText from "../common/titleText.js";
+import {GetAlbumById} from "../../axios/spotifyAxios.js";
 
-const useSetDataForArtistReview = () => {
-    const { getArtistById } = useGetArtistById();
+const useSetDataForAlbumReview = () => {
+    const { getAlbumById } = useGetAlbumById();
 
-    const setDataForArtistReview = useCallback(async (spotifyId) => {
+    const setDataForAlbumReview = useCallback(async (spotifyId) => {
         try {
-            const data = await getArtistById(spotifyId);
+            const data = await GetAlbumById(spotifyId);
             return {
                 ...data,
                 genres: truncateText(
@@ -24,9 +25,9 @@ const useSetDataForArtistReview = () => {
             console.error("Error fetching artist:", error);
             throw error;
         }
-    }, [getArtistById]);
+    }, [useGetAlbumById]);
 
-    return { setDataForArtistReview };
+    return { setDataForAlbumReview };
 };
 
-export default useSetDataForArtistReview;
+export default useSetDataForAlbumReview;

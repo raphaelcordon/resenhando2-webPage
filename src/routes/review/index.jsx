@@ -5,6 +5,8 @@ import LoaderComponent from "../../components/common/loaderComponent.jsx";
 import ReviewViewBody from "../../components/review/commonComponents/reviewViewBody.jsx";
 import {GetReviewById} from "../../axios/reviewAxios.js";
 import UseSetDataForArtistReview from "../../hooks/reviewHooks/useSetDataForArtistReview.jsx";
+import UseSetDataForAlbumReview from "../../hooks/reviewHooks/useSetDataForAlbumReview.jsx";
+import UseSetDataForTrackReview from "../../hooks/reviewHooks/useSetDataForTrackReview.jsx";
 
 const Review = () => {
     const { id: reviewId } = useParams();
@@ -12,9 +14,11 @@ const Review = () => {
     const reviews = useSelector((state) => state.reviewArtist.reviewArtistData.items || []);
 
     const [review, setReview] = useState(null);
-    const [artist, setArtist] = useState(null);
+    const [finalReviewContent, setFinalReviewContent] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const { setDataForArtistReview } = UseSetDataForArtistReview();
+    const { setDataForAlbumReview } = UseSetDataForAlbumReview();
+    const { setDataForTrackReview } = UseSetDataForTrackReview();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,13 +35,15 @@ const Review = () => {
                     switch (existingReview.reviewType) {
                         case 0: // Artist
                             const artistData = await setDataForArtistReview(existingReview.spotifyId);
-                            setArtist(artistData);
+                            setFinalReviewContent(artistData);
                             break;
                         case 1: // Album
-                            console.log("Album data fetching not implemented yet.");
+                            const albumData = await setDataForAlbumReview(existingReview.spotifyId);
+                            setFinalReviewContent(albumData);
                             break;
                         case 2: // Track
-                            console.log("Track data fetching not implemented yet.");
+                            const trackData = await setDataForTrackReview(existingReview.spotifyId);
+                            setFinalReviewContent(trackData);
                             break;
                         default:
                             console.log("Unsupported review type.");
@@ -62,8 +68,7 @@ const Review = () => {
     }
 
     const reviewProp = {
-        review,
-        artist,
+        finalReviewContent,
         imageUrl: review.coverImage,
         reviewTitle: review.reviewTitle,
         reviewBody: review.reviewBody,
