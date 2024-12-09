@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth.jsx";
 import { toast, ToastContainer } from "react-toastify";
 import ButtonSubmitDefault from "../../components/buttons/buttonSubmitDefault.jsx";
 
-const Login = ({ newRegisteredEmail = "" }) => {
+export default function Login({ newRegisteredEmail = "" }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [authError, setAuthError] = useState('');
@@ -101,5 +101,3 @@ const Login = ({ newRegisteredEmail = "" }) => {
         </div>
     );
 };
-
-export default Login;

@@ -5,7 +5,7 @@ import ReviewFindAlbumComponent from "../../components/review/findingComponents/
 import ReviewFindTrackComponent from "../../components/review/findingComponents/reviewFindTrackComponent.jsx";
 import {useState} from "react";
 
-const NewReview = () => {
+export default function NewReview() {
 
     const [activeComponent, setActiveComponent] = useState("");
 
@@ -56,4 +56,3 @@ const NewReview = () => {
         </div>
     );
 };
-export default NewReview;

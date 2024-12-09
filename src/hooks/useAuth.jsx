@@ -1,6 +1,6 @@
 import {useDispatch} from "react-redux";
 import {useCallback, useState} from "react";
-import {loginUser, storeUserData} from "../store/slices/userReducer.js";
+import {loginUser, storeUserData} from "../store/reducers/userReducer.js";
 import {AuthenticateUser} from "../axios/accountAxios.js";
 
 const useAuth = () => {
@@ -14,6 +14,7 @@ const useAuth = () => {
             window.localStorage.setItem("resenhando:authToken", authResponse.token);
             dispatch(loginUser(authResponse.token));
             dispatch(storeUserData(authResponse.userLoggedIn))
+            console.log(authResponse.userLoggedIn)
         } catch (error) {
             setError(error.message || "An error occurred during login.");
             throw error;

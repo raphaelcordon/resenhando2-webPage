@@ -1,13 +1,18 @@
-import ButtonCreateReview from "../../buttons/buttonCreateReview.jsx";
+import ButtonCreateReview from "../../buttons/buttonCreateReview";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {useDispatch, useSelector} from "react-redux";
+import truncateText from "../../../hooks/common/truncateText";
+import titleText from "../../../hooks/common/titleText";
+import {NavLink} from "react-router-dom";
 import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
-import ReviewWriteArtist from "./../writingComponents/reviewWriteNewArtist.jsx";
-import {useState} from "react";
-import truncateText from "../../../hooks/common/truncateText.js";
-import titleText from "../../../hooks/common/titleText.js";
+import {addSpotifyArtist} from "../../../store/reducers/spotifyArtistReducer";
 
 // The component details an ARTIST before the user decides to write a review about it
 const ReviewArtistDetailed = ({ item }) => {
+
+    const dispatch = useDispatch();
+    dispatch(addSpotifyArtist(item));
+    
     const { id, name, uri, href, genres, popularity } = item;
     const image = item.images?.[0];
     const imageUrl = image?.url;
@@ -15,15 +20,6 @@ const ReviewArtistDetailed = ({ item }) => {
     
     const externalUrl = item.externalUrls.spotify;
     const radio = `${externalUrl.substring(0, 25)}embed/${externalUrl.substring(25, externalUrl.length)}`;
-
-    const [writingReview, setWritingReview] = useState(false);
-    const handleStartReview = () => {
-        setWritingReview(true);
-    };
-
-    if (writingReview) {
-        return <ReviewWriteArtist item={item} />;
-    }
 
     const ListGenres = (genres) => {
         const preparedList = genres.map((genre) => `${titleText(genre)}`)
@@ -36,7 +32,6 @@ const ReviewArtistDetailed = ({ item }) => {
             target.scrollIntoView({ behavior: "smooth", block: "center" });
         }
     };
-    
     return (
         <div className="h-full w-full flex flex-col justify-between">
 
@@ -62,10 +57,11 @@ const ReviewArtistDetailed = ({ item }) => {
             </div>
 
             {/* Button Create Review */}
-            <div className="w-full mt-4 flex justify-center" id="createArtistReview">
-                <ButtonCreateReview buttonName={`Write a review about ${truncateText(name, 20)}`}
-                                    onClick={handleStartReview}/>
-            </div>
+            <NavLink to={`/reviewWriteArtist/${item.id}/`}>
+                <div className="w-full mt-4 flex justify-center" id="createArtistReview">
+                    <ButtonCreateReview buttonName={`Write a review about ${truncateText(name, 20)}`} />
+                </div>
+            </NavLink>
 
             {/* Text block */}
             <article
