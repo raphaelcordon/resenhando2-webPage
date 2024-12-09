@@ -1,16 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import _BaseLayout from "./_baseLayout/index.jsx";
-import Home from "./home/index.jsx";
-import Login from "./login/index.jsx";
-import Register from "./register/index.jsx";
-import NotFound from "./notFound/index.jsx";
-import ProtectedRoutes from "./protectedRoutes/index.jsx";
-import MainArtistsComponent from "../components/main/mainArtistsComponent.jsx";
-import MainAlbumsComponent from "../components/main/mainAlbumsComponent.jsx";
-import MainTracksComponent from "../components/main/mainTracksComponent.jsx";
-import Review from "./review/index.jsx";
-import NewReview from "./newReview/index.jsx";
-import ScrollToTop from "../hooks/common/scrollToTop.js";
+import _BaseLayout from "./pages/_baseLayout/";
+import Home from "./pages/home/";
+import Login from "./pages/login/";
+import Register from "./pages/register/";
+import NotFound from "./pages/notFound/";
+import ProtectedRoutes from "./pages/protectedRoutes/";
+import MainArtistsComponent from "./components/main/mainArtistsComponent.jsx";
+import MainAlbumsComponent from "./components/main/mainAlbumsComponent.jsx";
+import MainTracksComponent from "./components/main/mainTracksComponent.jsx";
+import Review from "./pages/review/";
+import NewReview from "./pages/newReview/";
+import ScrollToTop from "./hooks/common/scrollToTop.js";
+import ReviewWriteArtist from "./pages/review/reviewWritingRoutes/reviewWriteArtist.jsx";
 const Router = () => {
     return(
         <BrowserRouter>
@@ -24,9 +25,11 @@ const Router = () => {
                     <Route path="/albums" element={<MainAlbumsComponent />} />
                     <Route path="/tracks" element={<MainTracksComponent />} />
                     <Route path="/review/" element={<Home />} />
+                    <Route path="/reviewWriteArtist/" element={<Home />} />
                     <Route path="/review/:id" element={<Review />} />
                     <Route element={<ProtectedRoutes />}>
                         <Route path="/newreview" element={<NewReview />} />
+                        <Route path="/reviewWriteArtist/:id" element={<ReviewWriteArtist />} />
                     </Route>
                 </Route>
 

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useCallback, useState } from "react";
-import { storeUserData, logoutUser } from "../store/slices/userReducer.js";
+import { storeUserData, logoutUser } from "../store/reducers/userReducer.js";
 import { GetFromClaim } from "../axios/userAxios.js";
 
 const useGetAuthenticatedUser = () => {
@@ -11,7 +11,7 @@ const useGetAuthenticatedUser = () => {
         setError(null);
         try {
             const res = await GetFromClaim();
-            dispatch(storeUserData(res.data)); // Store user data if successful
+            dispatch(storeUserData(res)); // Store user data if successful
         } catch (error) {
             setError(error);
             window.localStorage.removeItem("resenhando:authToken");

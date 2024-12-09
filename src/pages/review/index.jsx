@@ -3,19 +3,20 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import LoaderComponent from "../../components/common/loaderComponent.jsx";
 import ReviewViewBody from "../../components/review/commonComponents/reviewViewBody.jsx";
-import {GetReviewById} from "../../axios/reviewAxios.js";
+import { GetReviewById } from "../../axios/reviewAxios.js";
 import UseSetDataForArtistReview from "../../hooks/reviewHooks/useSetDataForArtistReview.jsx";
 import UseSetDataForAlbumReview from "../../hooks/reviewHooks/useSetDataForAlbumReview.jsx";
 import UseSetDataForTrackReview from "../../hooks/reviewHooks/useSetDataForTrackReview.jsx";
 
-const Review = () => {
+export default function Review() {
     const { id: reviewId } = useParams();
-    // Check reviews in store
-    const reviews = useSelector((state) => state.reviewArtist.reviewArtistData.items || []);
+    const reviews = useSelector((state) => state.reviewArtist.reviewArtistData.items || []); // Get reviews from Redux
+    console.log("reviews", reviews);
 
     const [review, setReview] = useState(null);
     const [finalReviewContent, setFinalReviewContent] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+
     const { setDataForArtistReview } = UseSetDataForArtistReview();
     const { setDataForAlbumReview } = UseSetDataForAlbumReview();
     const { setDataForTrackReview } = UseSetDataForTrackReview();
@@ -24,30 +25,34 @@ const Review = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
+                // Check if the review is already in the Redux store
                 let existingReview = reviews.find((r) => r.id === reviewId);
+
+                // If not found, fetch from the server
                 if (!existingReview) {
                     existingReview = await GetReviewById(reviewId);
                 }
 
                 setReview(existingReview);
 
+                // Fetch additional data based on the review type
                 if (existingReview) {
+                    let reviewContent = null;
                     switch (existingReview.reviewType) {
                         case 0: // Artist
-                            const artistData = await setDataForArtistReview(existingReview.spotifyId);
-                            setFinalReviewContent(artistData);
+                            reviewContent = await setDataForArtistReview(existingReview.spotifyId);
                             break;
                         case 1: // Album
-                            const albumData = await setDataForAlbumReview(existingReview.spotifyId);
-                            setFinalReviewContent(albumData);
+                            reviewContent = await setDataForAlbumReview(existingReview.spotifyId);
                             break;
                         case 2: // Track
-                            const trackData = await setDataForTrackReview(existingReview.spotifyId);
-                            setFinalReviewContent(trackData);
+                            reviewContent = await setDataForTrackReview(existingReview.spotifyId);
                             break;
                         default:
-                            console.log("Unsupported review type.");
+                            console.warn("Unsupported review type:", existingReview.reviewType);
                     }
+
+                    setFinalReviewContent(reviewContent);
                 }
             } catch (error) {
                 console.error("Error in fetchData:", error);
@@ -57,7 +62,7 @@ const Review = () => {
         };
 
         fetchData();
-    }, [reviewId, reviews, setDataForArtistReview]);
+    }, [reviewId, reviews, setDataForArtistReview, setDataForAlbumReview, setDataForTrackReview]);
 
     if (isLoading) {
         return <LoaderComponent />;
@@ -69,22 +74,12 @@ const Review = () => {
 
     const reviewProp = {
         finalReviewContent,
-        imageUrl: review.coverImage,
-        reviewTitle: review.reviewTitle,
-        reviewBody: review.reviewBody,
+        review,
     };
 
     return (
         <div className="flex flex-col justify-start pt-6 items-center min-h-[60vh]">
-            {isLoading ? (
-                <LoaderComponent />
-            ) : review ? (
-                <ReviewViewBody reviewProp={reviewProp} />
-            ) : (
-                <p>Review not found</p>
-            )}
+            <ReviewViewBody reviewProp={reviewProp} />
         </div>
     );
 };
-
-export default Review;

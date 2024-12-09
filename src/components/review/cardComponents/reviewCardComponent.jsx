@@ -1,10 +1,11 @@
 import truncateText from "../../../hooks/common/truncateText.js";
+import AdjustDatetime from "../../../hooks/common/AdjustDatetime.js";
 
 //  This component is shown at main components for ARTISTS, ALBUMS and TRACKS
 const ReviewCardComponent = ({ review }) => {
     const { id, coverImage, reviewTitle, reviewBody, reviewType, spotifyId, createdAt, user } = review;
 
-    const formattedDate = new Date(createdAt).toLocaleDateString('en-GB');
+    const formattedDate = AdjustDatetime(createdAt);
     
     return (
         <div className="w-full lg:w-72 shadow m-0 hover:opacity-60">

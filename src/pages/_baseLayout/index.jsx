@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import MobileTopNavBar from "../../components/navBar/mobileTopNavBar.jsx";
 
-const _BaseLayout = () => {
+export default function _BaseLayout() {
     const [activeComponent, setActiveComponent] = useState('artists');
 
     return (
@@ -34,5 +34,3 @@ const _BaseLayout = () => {
         </div>
     );
 };
-
-export default _BaseLayout;

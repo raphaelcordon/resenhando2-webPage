@@ -3,7 +3,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom"
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-const ProtectedRoutes = () => {
+export default function ProtectedRoutes() {
 
     const location = useLocation()
     const token = useSelector((state) => state.user.accessToken)
@@ -30,6 +30,3 @@ const ProtectedRoutes = () => {
         </>
     );
 };
-
-
-export default ProtectedRoutes

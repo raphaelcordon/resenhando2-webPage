@@ -1,4 +1,4 @@
-import { logoutUser as logoutAction } from "../store/slices/userReducer.js";
+import { logoutUser as logoutAction } from "../store/reducers/userReducer.js";
 import { useDispatch } from "react-redux";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";

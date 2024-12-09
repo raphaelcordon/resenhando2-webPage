@@ -3,9 +3,16 @@ import MainAlbumsComponent from "../../components/main/mainAlbumsComponent.jsx";
 import MainTracksComponent from "../../components/main/mainTracksComponent.jsx";
 import { useOutletContext } from "react-router-dom";
 import NewReview from "../newReview/index.jsx";
+import useFetchAllReviewsOnLoading from "../../hooks/useFetchAllReviewsOnLoading";
+import {useEffect} from "react";
 
-const Home = () => {
+export default function Home() {
     const [activeComponent] = useOutletContext();
+    const fetchAllReviewsOnLoading = useFetchAllReviewsOnLoading();
+    
+    useEffect(() => {
+      fetchAllReviewsOnLoading();  
+    },[])
 
     const renderComponent = () => {
         switch (activeComponent) {
@@ -28,5 +35,3 @@ const Home = () => {
         </div>
     );
 };
-
-export default Home;

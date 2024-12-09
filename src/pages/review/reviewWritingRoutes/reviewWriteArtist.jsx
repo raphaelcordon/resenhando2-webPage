@@ -1,52 +1,61 @@
-import {useLocation, useNavigate} from "react-router-dom";
-import ButtonSubmitDefault from "../../buttons/buttonSubmitDefault.jsx";
-import {useState} from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import ButtonSubmitDefault from "../../../components/buttons/buttonSubmitDefault.jsx";
+import { useState } from "react";
 import {useSelector} from "react-redux";
 import useCreateReview from "../../../hooks/useCreateReview.jsx";
 
-const ReviewWriteArtist = ({ item }) => {
-    const [reviewTitle, setReviewTitle] = useState('');
-    const [reviewBody, setReviewBody] = useState('');
-    const spotifyId = item.id;
-    const name = item.name;
-    const image = item.images?.[0];
-    const coverImage = image?.url;
-    const userId = useSelector((state) => state.user.userData).id;
-    const reviewType = 0; // Artist = 0
-
-    const { createReview, error } = useCreateReview();
-    const [errorReview, setErrorReview] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+export default function ReviewWriteArtist() {
+    const { id: spotifyId } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
+
+    // Memoized selectors
+    const artist = useSelector((state) => state.spotifyArtistData.filter(itemId => itemId.id === spotifyId))[0];
+    const userId = useSelector((state) => state.user.userData?.id);
     
+    const [reviewTitle, setReviewTitle] = useState('');
+    const [reviewBody, setReviewBody] = useState('');
+    const [errorReview, setErrorReview] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
+    const { createReview, error } = useCreateReview();
+
     const to = location.state?.from || "/artists";
-    
+
     const getSubmitData = async (e) => {
         e.preventDefault();
-        setErrorReview("");
+        setErrorReview('');
         setIsLoading(true);
         try {
-            const data = { spotifyId, coverImage, reviewTitle, reviewBody, reviewType ,userId };
+            const data = {
+                spotifyId,
+                coverImage: artist?.images?.[0]?.url,
+                reviewTitle,
+                reviewBody,
+                reviewType: 0, // Artist
+                userId,
+            };
             const res = await createReview(data);
-            if (res === 200)
-                navigate(to);
+            if (res === 200) navigate(to);
         } catch (error) {
             setErrorReview(error.message || "Failed to register. Please try again.");
         } finally {
             setIsLoading(false);
         }
     };
-    
+
+    if (!artist) {
+        return <p>Artist not found or not yet loaded. Please try again later.</p>;
+    }
+
     return (
         <div className="flex flex-col justify-start pt-6 items-center min-h-[60vh]">
-
             <div className="max-w-lg w-[95vw] p-6">
-                <h2 className="text-xl font-semibold text-start mt-2 mb-2">A new review about: "{item.name}"</h2>
+                <h2 className="text-xl font-semibold text-start mt-2 mb-2">A new review about <b>{artist.name}</b></h2>
                 <form onSubmit={getSubmitData}>
                     <div className="mb-4">
                         <label htmlFor="reviewTitle" className="block mb-2 text-sm text-accent-content">
-                            Review title 
+                            Review title
                         </label>
                         <input
                             name="reviewTitle"
@@ -72,7 +81,6 @@ const ReviewWriteArtist = ({ item }) => {
                             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-secondary"
                         />
                     </div>
-
                     <div className="text-center">
                         {errorReview && <p className="text-error text-sm mt-2">{errorReview}</p>}
                         <ButtonSubmitDefault
@@ -85,6 +93,5 @@ const ReviewWriteArtist = ({ item }) => {
                 {error && <p className="text-error text-sm mt-2">{error}</p>}
             </div>
         </div>
-    )
-}
-export default ReviewWriteArtist;
+    );
+};

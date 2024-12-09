@@ -1,8 +1,8 @@
 import {useDispatch} from "react-redux";
 import {useCallback, useState} from "react";
-import {storeReviewArtistData} from "../store/slices/reviewArtistReducer.js";
-import {storeReviewAlbumData} from "../store/slices/reviewAlbumReducer.js";
-import {storeReviewTrackData} from "../store/slices/reviewTrackReducer.js";
+import {storeReviewArtistData} from "../store/reducers/reviewArtistReducer.js";
+import {storeReviewAlbumData} from "../store/reducers/reviewAlbumReducer.js";
+import {storeReviewTrackData} from "../store/reducers/reviewTrackReducer.js";
 import {Create} from "../axios/reviewAxios.js";
 
 const useCreateReview = () => {

@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser, loginUser } from "../../store/slices/userReducer.js"; // Import loginUser
+import { logoutUser, loginUser } from "../../store/reducers/userReducer.js"; // Import loginUser
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket, faGear, faArrowRightToBracket, faBell } from "@fortawesome/free-solid-svg-icons";
 import useGetAuthenticatedUser from "../../hooks/useGetAuthenticatedUser.jsx";
@@ -17,26 +17,20 @@ const UserMenuComponent = () => {
     const { logout } = useLogout();
 
     // Check localStorage and update Redux state
-    useEffect(() => {
-        const localToken = window.localStorage.getItem("resenhando:authToken");
-        if (localToken && !token) {
-            dispatch(loginUser(localToken));
+    useEffect(()=> {
+        const localStorageToken = window.localStorage.getItem("resenhando:authToken");
+        
+        if (localStorageToken && !token) {
+            dispatch(loginUser(localStorageToken));
         }
-    }, [dispatch, token]);
-
-    const fetchUser = useCallback(async () => {
-        if (token && !user) {
-            try {
-                await getUser();
-            } catch (err) {
-                console.error("Failed to fetch user data:", err);
-            }
+        if (localStorageToken && token && !user) {
+            fetchUser();
         }
-    }, [getUser, token, user]);
+    }, [dispatch, token, user]);
 
-    useEffect(() => {
-        fetchUser();
-    }, [fetchUser]);
+    const fetchUser = async () => {
+        await getUser();
+    };
     
     return (
         <div className="h-full w-full flex justify-end">
